@@ -1,13 +1,21 @@
 import React from 'react';
-import '../style/App.css';
+import { Route, Switch } from 'react-router-dom';
+import AddSongForm from './AddSongForm';
+import NavigationBar from './NavigationBar';
+import Home from './Home';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Playlist</h2>
-        </div>
+
+        <NavigationBar />
+
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/add-song-form" component={AddSongForm} />
+        </Switch>
+
       </div>
     );
   }
