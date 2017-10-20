@@ -18,7 +18,7 @@ class NavigationBar extends React.Component {
                             <Link to="#">View Playlist</Link>
                         </NavItem>
                         <NavItem eventKey={2}>
-                            <Link to="/add-song-form">Add a Song</Link>
+                            <Link to="/song-addition">Add a Song</Link>
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
