@@ -3,9 +3,9 @@ import AddSongForm from './AddSongForm';
 
 class AddSongPage extends React.Component {
 
-    submit(values) {
+    submit = (values) => {
         console.log(values);
-    }
+    };
 
     render() {
         return (
