@@ -1,48 +1,78 @@
 import React from 'react';
-import { Button, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import { Field, reduxForm } from 'redux-form';
 
-class AddSongForm extends React.Component {
-    render() {
-        return (
-            <form>
-                <FormGroup>
-                    <ControlLabel>Song Title</ControlLabel>
-                    {' '}
-                    <FormControl type="text" placeholder="song title" />
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Artist</ControlLabel>
-                    {' '}
-                    <FormControl type="text" placeholder="artist" />
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Album</ControlLabel>
-                    {' '}
-                    <FormControl type="text" placeholder="album" />
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Year</ControlLabel>
-                    {' '}
-                    <FormControl type="text" placeholder="year" />
-                </FormGroup>
+let AddSongForm = (props) => {
+    const { handleSubmit, pristine, submitting } = props;
 
-                <FormGroup controlId="formControlsSelect">
-                    <ControlLabel>Genre</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
+    return (
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label>Song Name</label>
+                <div>
+                    <Field
+                        name="songName"
+                        component="input"
+                        type="text"
+                        placeholder="Song Name"
+                    />
+                </div>
+            </div>
+            <div>
+                <label>Artist</label>
+                <div>
+                    <Field
+                        name="artist"
+                        component="input"
+                        type="text"
+                        placeholder="Artist"
+                    />
+                </div>
+            </div>
+            <div>
+                <label>Album</label>
+                <div>
+                    <Field
+                        name="album"
+                        component="input"
+                        type="text"
+                        placeholder="Album"
+                    />
+                </div>
+            </div>
+            <div>
+                <label>Year</label>
+                <div>
+                    <Field
+                        name="year"
+                        component="input"
+                        type="text"
+                        placeholder="Year"
+                    />
+                </div>
+            </div>
+            <div>
+                <label>Genre</label>
+                <div>
+                    <Field name="genre" component="select">
+                        <option />
                         <option value="classical">Classical</option>
                         <option value="electronic">Electronic</option>
                         <option value="folk">Folk</option>
                         <option value="metal">Metal</option>
                         <option value="rock">Rock</option>
-                    </FormControl>
-                </FormGroup>
+                        <option value="soundtrack">Soundtrack</option>
+                    </Field>
+                </div>
+            </div>
+            <div>
+                <button type="submit" disabled={pristine || submitting}>Submit</button>
+            </div>
+        </form>
+    );
+};
 
-                <Button type="submit">
-                    Add Song
-                </Button>
-            </form>
-        );
-    }
-}
+AddSongForm = reduxForm({
+    form: 'addSong', // unique ID for this form
+})(AddSongForm);
 
 export default AddSongForm;
