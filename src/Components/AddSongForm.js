@@ -9,6 +9,7 @@ class AddSongForm extends React.Component {
 
         return (
             <form onSubmit={handleSubmit}>
+                <h1>Add Song to Playlist</h1>
                 <div>
                     <label>Song Name</label>
                     <div>
