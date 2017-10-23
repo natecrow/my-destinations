@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.0",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
@@ -26,8 +27,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "server": "node server/server.js",
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others --raw \"react-scripts start\" \"node server/server.js\" || true",
     "test": "react-scripts test --env=jsdom"
   }
 }
