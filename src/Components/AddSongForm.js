@@ -13,51 +13,51 @@ class AddSongForm extends React.Component {
                 <div>
                     <label>Title</label>
                     <div>
-                        <Field name="title" component="input" type="text"
-                            placeholder="Title"
+                        <Field name='title' component='input' type='text'
+                            placeholder='Title'
                         />
                     </div>
                 </div>
                 <div>
                     <label>Artist</label>
                     <div>
-                        <Field name="artist" component="input" type="text"
-                            placeholder="Artist"
+                        <Field name='artist' component='input' type='text'
+                            placeholder='Artist'
                         />
                     </div>
                 </div>
                 <div>
                     <label>Album</label>
                     <div>
-                        <Field name="album" component="input" type="text"
-                            placeholder="Album"
+                        <Field name='album' component='input' type='text'
+                            placeholder='Album'
                         />
                     </div>
                 </div>
                 <div>
                     <label>Year</label>
                     <div>
-                        <Field name="year" component="input" type="text"
-                            placeholder="Year"
+                        <Field name='year' component='input' type='text'
+                            placeholder='Year'
                         />
                     </div>
                 </div>
                 <div>
                     <label>Genre</label>
                     <div>
-                        <Field name="genre" component="select">
+                        <Field name='genre' component='select'>
                             <option />
-                            <option value="classical">Classical</option>
-                            <option value="electronic">Electronic</option>
-                            <option value="folk">Folk</option>
-                            <option value="metal">Metal</option>
-                            <option value="rock">Rock</option>
-                            <option value="soundtrack">Soundtrack</option>
+                            <option value='classical'>Classical</option>
+                            <option value='electronic'>Electronic</option>
+                            <option value='folk'>Folk</option>
+                            <option value='metal'>Metal</option>
+                            <option value='rock'>Rock</option>
+                            <option value='soundtrack'>Soundtrack</option>
                         </Field>
                     </div>
                 </div>
                 <div>
-                    <button type="submit" disabled={pristine || submitting}>Submit</button>
+                    <button type='submit' disabled={pristine || submitting}>Submit</button>
                 </div>
             </form>
         );

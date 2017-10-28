@@ -7,13 +7,13 @@ import Home from './Home';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className='App'>
 
         <NavigationBar />
 
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/song-addition" component={AddSongPage} />
+          <Route exact path='/' component={Home} />
+          <Route path='/song-addition' component={AddSongPage} />
         </Switch>
 
       </div>

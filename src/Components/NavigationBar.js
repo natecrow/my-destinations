@@ -8,17 +8,17 @@ class NavigationBar extends React.Component {
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">Playlist App</Link>
+                        <Link to='/'>Playlist App</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
                         <NavItem eventKey={1}>
-                            <Link to="#">View Playlist</Link>
+                            <Link to='#'>View Playlist</Link>
                         </NavItem>
                         <NavItem eventKey={2}>
-                            <Link to="/song-addition">Add a Song</Link>
+                            <Link to='/song-addition'>Add a Song</Link>
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>

@@ -6,16 +6,16 @@ class AddSongPage extends React.Component {
 
     submit(values) {
         const formData = {
-            "title": values.title,
-            "artist": values.artist,
-            "album": values.album,
-            "year": values.year,
-            "genre": values.genre
+            'title': values.title,
+            'artist': values.artist,
+            'album': values.album,
+            'year': values.year,
+            'genre': values.genre
         }
 
         console.log('Creating song: ' + JSON.stringify(formData));
 
-        axios.post("/api/songs", formData);
+        axios.post('/api/songs', formData);
     }
 
     render() {
