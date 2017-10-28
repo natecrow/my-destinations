@@ -19,15 +19,18 @@
   },
   "devDependencies": {
     "eslint": "^4.9.0",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-react": "^7.4.0",
+    "nodemon": "^1.12.1"
   },
   "plugins": [
     "react"
   ],
   "scripts": {
     "build": "react-scripts build",
+    "dev": "nodemon index.js",
     "eject": "react-scripts eject",
     "start": "concurrently --kill-others --raw \"react-scripts start\" \"node server/server.js\" || true",
     "test": "react-scripts test --env=jsdom"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
