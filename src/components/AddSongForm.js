@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { validate } from './../validation/validateSong';
 import TextField from './fields/TextField';
+import DropdownField from './fields/DropdownField';
+import { genres } from './../dropdown_values/genres';
 
 let AddSongForm = ({ handleSubmit, pristine, submitting, reset }) => (
     <form onSubmit={handleSubmit}>
@@ -11,20 +13,7 @@ let AddSongForm = ({ handleSubmit, pristine, submitting, reset }) => (
         <Field name='artist' type='text' component={TextField} label='Artist' />
         <Field name='album' type='text' component={TextField} label='Album' />
         <Field name='year' type='text' component={TextField} label='Year' />
-        <div>
-            <label>Genre</label>
-            <div>
-                <Field name='genre' component='select'>
-                    <option />
-                    <option value='classical'>Classical</option>
-                    <option value='electronic'>Electronic</option>
-                    <option value='folk'>Folk</option>
-                    <option value='metal'>Metal</option>
-                    <option value='rock'>Rock</option>
-                    <option value='soundtrack'>Soundtrack</option>
-                </Field>
-            </div>
-        </div>
+        <Field name='genre' items={genres} component={DropdownField} label='Genre' />
         <div>
             <button type='submit' disabled={pristine || submitting}>Submit</button>
             <button type="button" disabled={pristine || submitting} onClick={reset}>Clear</button>
