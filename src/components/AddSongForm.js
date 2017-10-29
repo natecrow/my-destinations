@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { validate } from './../validation/validateSong';
 import TextField from './fields/TextField';
 
-let AddSongForm = ({ handleSubmit, pristine, submitting }) => (
+let AddSongForm = ({ handleSubmit, pristine, submitting, reset }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Song to Playlist</h1>
         <Field name='title' type='text' component={TextField} label='Title' />
@@ -27,6 +27,7 @@ let AddSongForm = ({ handleSubmit, pristine, submitting }) => (
         </div>
         <div>
             <button type='submit' disabled={pristine || submitting}>Submit</button>
+            <button type="button" disabled={pristine || submitting} onClick={reset}>Clear</button>
         </div>
     </form>
 );
@@ -34,7 +35,8 @@ let AddSongForm = ({ handleSubmit, pristine, submitting }) => (
 AddSongForm.propTypes = {
     handleSubmit: PropTypes.any,
     pristine: PropTypes.any,
-    submitting: PropTypes.any
+    submitting: PropTypes.any,
+    reset: PropTypes.any
 }
 
 AddSongForm = reduxForm({
