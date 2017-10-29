@@ -6,7 +6,13 @@ class AddSongPage extends React.Component {
 
     submit(values) {
         console.log('Creating song: ' + JSON.stringify(values));
-        axios.post('/api/songs', values);
+        axios.post('/api/songs', values)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     render() {
