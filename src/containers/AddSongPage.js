@@ -1,5 +1,5 @@
 import React from 'react';
-import AddSongForm from './AddSongForm';
+import AddSongForm from '../components/AddSongForm';
 import axios from 'axios';
 
 class AddSongPage extends React.Component {

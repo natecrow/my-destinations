@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AddSongPage from './AddSongPage';
 import NavigationBar from './NavigationBar';
 import Home from './Home';
+import AddSongPage from '../containers/AddSongPage';
 
 class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class App extends React.Component {
 
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/song-addition' component={AddSongPage} />
+          <Route path='/song' component={AddSongPage} />
         </Switch>
 
       </div>
