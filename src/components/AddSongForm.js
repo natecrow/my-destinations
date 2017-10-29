@@ -1,42 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
+import { validate } from './../validation/validateSong';
+import TextField from './fields/TextField';
 
 let AddSongForm = ({ handleSubmit, pristine, submitting }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Song to Playlist</h1>
-        <div>
-            <label>Title</label>
-            <div>
-                <Field name='title' component='input' type='text'
-                    placeholder='Title'
-                />
-            </div>
-        </div>
-        <div>
-            <label>Artist</label>
-            <div>
-                <Field name='artist' component='input' type='text'
-                    placeholder='Artist'
-                />
-            </div>
-        </div>
-        <div>
-            <label>Album</label>
-            <div>
-                <Field name='album' component='input' type='text'
-                    placeholder='Album'
-                />
-            </div>
-        </div>
-        <div>
-            <label>Year</label>
-            <div>
-                <Field name='year' component='input' type='text'
-                    placeholder='Year'
-                />
-            </div>
-        </div>
+        <Field name='title' type='text' component={TextField} label='Title' />
+        <Field name='artist' type='text' component={TextField} label='Artist' />
+        <Field name='album' type='text' component={TextField} label='Album' />
+        <Field name='year' type='text' component={TextField} label='Year' />
         <div>
             <label>Genre</label>
             <div>
@@ -65,6 +39,7 @@ AddSongForm.propTypes = {
 
 AddSongForm = reduxForm({
     form: 'addSong', // unique ID for this form
+    validate
 })(AddSongForm);
 
 export default AddSongForm;
