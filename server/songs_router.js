@@ -25,8 +25,6 @@ router.post('/', (req, res) => {
 
     const playlistUrl = PLAYLIST_SERVICE_URL + '/songs';
 
-    // TODO fields validation
-
     return new Promise(() => {
         axios.post(playlistUrl, req.body)
             .then((response) => {
