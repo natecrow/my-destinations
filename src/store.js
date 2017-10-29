@@ -6,6 +6,9 @@ const rootReducer = combineReducers({
 })
 // Runs createStore function, which returns another function that
 // takes in reducer as a parameter
-const store = (createStore)(rootReducer);
+const store = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
