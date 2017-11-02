@@ -13,7 +13,7 @@ const NavigationBar = () => (
         <Navbar.Collapse>
             <Nav>
                 <NavItem eventKey={1}>
-                    <Link to='#'>View Playlist</Link>
+                    <Link to='/playlist'>View Playlist</Link>
                 </NavItem>
                 <NavItem eventKey={2}>
                     <Link to='/song'>Add a Song</Link>

@@ -5,11 +5,9 @@ import axios from 'axios';
 class AddSongPage extends React.Component {
 
     submit(values) {
-        console.log('Creating song: ' + JSON.stringify(values));
-
         axios.post('/api/songs', values)
             .then(response => {
-                console.log('Created song: ' + response.data);
+                console.log('Created song: ' + JSON.stringify(response.data));
             })
             .catch(error => {
                 console.log('Error creating song: ' + error);
