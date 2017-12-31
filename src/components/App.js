@@ -6,7 +6,7 @@ import AddSongContainer from '../containers/AddSongContainer';
 import PlaylistContainer from '../containers/PlaylistContainer';
 
 const App = () => (
-  < div className='App' >
+  <div className='App'>
     <NavigationBar />
     <Switch>
       <Route exact path='/' component={Home} />

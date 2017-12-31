@@ -2,7 +2,7 @@ import React from 'react';
 import AddSongForm from '../components/AddSongForm';
 import axios from 'axios';
 
-class AddSongPage extends React.Component {
+class AddSongContainer extends React.Component {
 
     submit(values) {
         axios.post('/api/songs', values)
@@ -21,4 +21,4 @@ class AddSongPage extends React.Component {
     }
 }
 
-export default AddSongPage;
+export default AddSongContainer;
