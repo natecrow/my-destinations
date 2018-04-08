@@ -1,9 +1,9 @@
-# Playlist
+# My Destinations
 
-Front end React web app for managing music playlists.
-
-This is a demo app to help me learn React.
+Front end React web app for managing destinations.
 
 ## How to run
+
+`npm install` (if you haven't already)
 
 `npm run start`

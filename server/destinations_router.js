@@ -2,14 +2,14 @@ let axios = require('axios');
 let express = require('express');
 let router = express.Router();
 
-const PLAYLIST_SERVICE_URL = 'http://localhost:8080';
+const DESTINATIONS_SERVICE_URL = 'http://localhost:8080';
 
-// Get all songs
+// Get all destinations
 router.get('/', (req, res) => {
 
-    const playlistUrl = PLAYLIST_SERVICE_URL + '/songs';
+    const destinationsUrl = DESTINATIONS_SERVICE_URL + '/destinations';
 
-    axios.get(playlistUrl)
+    axios.get(destinationsUrl)
         .then((response) => {
             res.send(response.data);
         })
@@ -18,12 +18,12 @@ router.get('/', (req, res) => {
         });
 });
 
-// Create a song
+// Create a destination
 router.post('/', (req, res) => {
 
-    const playlistUrl = PLAYLIST_SERVICE_URL + '/songs';
+    const destinationsUrl = DESTINATIONS_SERVICE_URL + '/destinations';
 
-    axios.post(playlistUrl, req.body)
+    axios.post(destinationsUrl, req.body)
         .then((response) => {
             res.send(response.data);
         })

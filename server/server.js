@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 // The value can be a string or array because they are not extended.
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Set up routes for songs
-let songs = require('./songs_router.js');
-app.use('/api/songs', songs);
+// Set up routes for destinations
+let destinations = require('./destinations_router.js');
+app.use('/api/destinations', destinations);
 
 app.listen(PORT, () => {
     console.log('Listening on port ' + PORT);
