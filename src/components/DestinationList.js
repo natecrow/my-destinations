@@ -15,7 +15,7 @@ let DestinationList = ({ destinations }) => (
             {destinations.map(destination =>
                 <tr key={destination.id}>
                     <td>{destination.name}</td>
-                    <td>{destination.address.city}, {destination.address.state}</td>
+                    <td>{destination.city}, {destination.state}</td>
                     <td>{destination.dateTimeToVisit}</td>
                     <td>{destination.linkToWebsite}</td>
                 </tr>

@@ -18,14 +18,13 @@ class DestinationListContainer extends React.Component {
         .then(response => {
             if (response) {
                 // Store destinations from backend in the state
-                destinations = response.data.map(destination => {
+                destinations = response.data._embedded.destinations.map(destination => {
                     return {
                         id: destination.id,
-                        title: destination.title,
-                        artist: destination.artist,
-                        album: destination.album,
-                        year: destination.year,
-                        genre: destination.genre
+                        name: destination.name,
+                        state: destination.address.state,
+                        city: destination.address.city,
+                        linkToWebsite: destination.linkToWebsite
                     };
                 });
                 this.setState({destinations: destinations});
