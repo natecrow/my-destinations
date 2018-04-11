@@ -13,10 +13,10 @@ const NavigationBar = () => (
         <Navbar.Collapse>
             <Nav>
                 <NavItem eventKey={1}>
-                    <Link to='/destination-list'>View Destinations</Link>
+                    <Link to='/destinations'>View Destinations</Link>
                 </NavItem>
                 <NavItem eventKey={2}>
-                    <Link to='/destination'>Add destination</Link>
+                    <Link to='/destinations/new'>Add destination</Link>
                 </NavItem>
             </Nav>
         </Navbar.Collapse>

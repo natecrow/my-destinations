@@ -9,9 +9,9 @@ const App = () => (
     <NavigationBar />
     <Switch>
       <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Route exact path='/' component={AddDestinationContainer} />
-        <Route exact path='/destination-list' component={DestinationListContainer} />
-        <Route path='/destination' component={AddDestinationContainer} />
+        <Route exact path='/' component={DestinationListContainer} />
+        <Route exact path='/destinations' component={DestinationListContainer} />
+        <Route path='/destinations/new' component={AddDestinationContainer} />
       </div>
     </Switch>
   </div >
