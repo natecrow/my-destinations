@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
 
-let AddDestinationForm = ({ handleSubmit, pristine, submitting, reset }) => (
+let DestinationForm = ({ handleSubmit, pristine, submitting, reset }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Destination to List</h1>
         <Field name='name' type='text' component={TextField} label='Name' />
@@ -25,16 +25,16 @@ let AddDestinationForm = ({ handleSubmit, pristine, submitting, reset }) => (
     </form>
 );
 
-AddDestinationForm.propTypes = {
+DestinationForm.propTypes = {
     handleSubmit: PropTypes.any,
     pristine: PropTypes.any,
     submitting: PropTypes.any,
     reset: PropTypes.any
 }
 
-AddDestinationForm = reduxForm({
-    form: 'addDestination', // unique ID for this form
+DestinationForm = reduxForm({
+    form: 'destination', // unique ID for this form
     validate
-})(AddDestinationForm);
+})(DestinationForm);
 
-export default AddDestinationForm;
+export default DestinationForm;

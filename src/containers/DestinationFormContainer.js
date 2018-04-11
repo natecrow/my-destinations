@@ -1,10 +1,12 @@
 import React from 'react';
-import AddDestinationForm from '../components/AddDestinationForm';
+import DestinationForm from '../components/DestinationForm';
 import axios from 'axios';
 
-class AddDestinationContainer extends React.Component {
+class DestinationFormContainer extends React.Component {
 
     submit(values) {
+        console.log('Submitting destination: ' + values);
+
         axios.post('/api/destinations', values)
             .then(response => {
                 console.log('Created destination: ' + JSON.stringify(response.data));
@@ -16,9 +18,9 @@ class AddDestinationContainer extends React.Component {
 
     render() {
         return (
-            <AddDestinationForm onSubmit={this.submit} />
+            <DestinationForm onSubmit={this.submit} />
         );
     }
 }
 
-export default AddDestinationContainer;
+export default DestinationFormContainer;
