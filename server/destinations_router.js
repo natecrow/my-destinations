@@ -4,12 +4,12 @@ let router = express.Router();
 
 const DESTINATIONS_SERVICE_URL = 'http://localhost:8080';
 
-// Get all destinations
-router.get('/', (req, res) => {
+// Create a destination
+router.post('/', (req, res) => {
 
     const destinationsUrl = DESTINATIONS_SERVICE_URL + '/destinations';
 
-    axios.get(destinationsUrl)
+    axios.post(destinationsUrl, req.body)
         .then((response) => {
             res.send(response.data);
         })
@@ -18,12 +18,12 @@ router.get('/', (req, res) => {
         });
 });
 
-// Create a destination
-router.post('/', (req, res) => {
+// Get all destinations
+router.get('/', (req, res) => {
 
     const destinationsUrl = DESTINATIONS_SERVICE_URL + '/destinations';
 
-    axios.post(destinationsUrl, req.body)
+    axios.get(destinationsUrl)
         .then((response) => {
             res.send(response.data);
         })
