@@ -6,22 +6,7 @@ import TextField from './fields/TextField';
 import {load as loadDestination} from '../redux/destination';
 import {connect} from 'react-redux';
 
-const data = {
-    name: 'Hogwarts',
-    cost: '5000',
-    dateTimeToVisit: '2018-09-01',
-    linkToWebsite: 'www.hogwarts.com',
-    phoneNumber: '000-000-0000',
-    notes: 'Senior year',
-    address: {
-        street: '321 Mountain Rd',
-        city: 'Highlands',
-        state: 'Scotland',
-        zip: '00000'
-    }
-}
-
-let DestinationForm = ({ handleSubmit, pristine, submitting, reset, load }) => (
+let DestinationForm = ({ handleSubmit, pristine, submitting, reset, load, data }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Destination to List</h1>
         <div>
@@ -50,12 +35,14 @@ DestinationForm.propTypes = {
     pristine: PropTypes.any,
     submitting: PropTypes.any,
     reset: PropTypes.any,
-    load: PropTypes.any
+    load: PropTypes.any,
+    data: PropTypes.any
 }
 
 DestinationForm = reduxForm({
     form: 'destination', // unique ID for this form
-    validate
+    validate,
+    enableReinitialize: true
 })(DestinationForm);
 
 // Connect to destination reducer

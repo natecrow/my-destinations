@@ -11,7 +11,8 @@ const App = () => (
       <div style={{display: 'flex', justifyContent: 'center'}}>
         <Route exact path='/' component={DestinationListContainer} />
         <Route exact path='/destinations' component={DestinationListContainer} />
-        <Route path='/destinations/new' component={DestinationFormContainer} />
+        <Route exact path='/destinations/new' component={DestinationFormContainer} />
+        <Route exact path='/destinations/:id([0-9]*)' component={DestinationFormContainer} />
       </div>
     </Switch>
   </div >
