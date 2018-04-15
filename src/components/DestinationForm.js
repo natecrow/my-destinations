@@ -5,38 +5,57 @@ import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
 import {load as loadDestination} from '../redux/destination';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
-let DestinationForm = ({ handleSubmit, pristine, submitting, reset, load, data }) => (
-    <form onSubmit={handleSubmit}>
-        <h1>Add Destination to List</h1>
-        <div>
-            <button type="button" onClick={() => load(data)}>Load Default Destination</button>
-        </div>
-        <Field name='name' type='text' component={TextField} label='Name' />
-        <Field name='cost' type='text' component={TextField} label='Cost' />
-        <Field name='dateTimeToVisit' type='text' component={TextField} label='Date to Visit' />
-        <Field name='linkToWebsite' type='text' component={TextField} label='Link to Website' />
-        <Field name='phoneNumber' type='text' component={TextField} label='Phone Number' />
-        <Field name='notes' type='text' component={TextField} label='Additional Notes' />
-        <br/>
-        <Field name='address.street' type='text' component={TextField} label='Street' />
-        <Field name='address.city' type='text' component={TextField} label='City' />
-        <Field name='address.state' type='text' component={TextField} label='State' />
-        <Field name='address.zip' type='text' component={TextField} label='Zip Code' />
-        <div>
-            <button type='submit' disabled={pristine || submitting}>Submit</button>
-            <button type="button" disabled={pristine || submitting} onClick={reset}>Reset</button>
-        </div>
-    </form>
-);
+class DestinationForm extends React.Component {
 
-DestinationForm.propTypes = {
-    handleSubmit: PropTypes.any,
-    pristine: PropTypes.any,
-    submitting: PropTypes.any,
-    reset: PropTypes.any,
-    load: PropTypes.any,
-    data: PropTypes.any
+    static propTypes = {
+        handleSubmit: PropTypes.any,
+        pristine: PropTypes.any,
+        submitting: PropTypes.any,
+        reset: PropTypes.any,
+        id: PropTypes.any
+    };
+
+    getDestination(id) {
+        console.log('Getting destination with id ' + id + '...');
+        
+        axios.get('/api/destinations/' + id)
+            .then(response => {
+                console.log('Got destination: ' + JSON.stringify(response.data));
+                this.props.load(response.data);
+            })
+            .catch(error => {
+                console.log('Error getting destination: ' + error);
+            });
+    }
+
+    componentWillMount() {
+        this.getDestination(this.props.id);
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.props.handleSubmit}>
+                <h1>Add Destination to List</h1>
+                <Field name='name' type='text' component={TextField} label='Name' />
+                <Field name='cost' type='text' component={TextField} label='Cost' />
+                <Field name='dateTimeToVisit' type='text' component={TextField} label='Date to Visit' />
+                <Field name='linkToWebsite' type='text' component={TextField} label='Link to Website' />
+                <Field name='phoneNumber' type='text' component={TextField} label='Phone Number' />
+                <Field name='notes' type='text' component={TextField} label='Additional Notes' />
+                <br/>
+                <Field name='address.street' type='text' component={TextField} label='Street' />
+                <Field name='address.city' type='text' component={TextField} label='City' />
+                <Field name='address.state' type='text' component={TextField} label='State' />
+                <Field name='address.zip' type='text' component={TextField} label='Zip Code' />
+                <div>
+                    <button type='submit' disabled={this.props.pristine || this.props.submitting}>Submit</button>
+                    <button type="button" disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>Reset</button>
+                </div>
+            </form>
+        )
+    }
 }
 
 DestinationForm = reduxForm({
