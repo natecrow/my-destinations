@@ -16,10 +16,29 @@ class DestinationFormContainer extends React.Component {
             });
     }
 
+    getDestination(id) {
+        console.log('Getting destination with id ' + id + '...');
+
+        axios.get('/api/destinations/' + id)
+            .then(response => {
+                console.log('Got destination: ' + JSON.stringify(response.data));
+                this.setState(response.data);
+            })
+            .catch(error => {
+                console.log('Error getting destination: ' + error);
+            });
+    }
+
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        if (id) {
+            this.getDestination(id);
+        }
+    }
+
     render() {
         return (
-            <DestinationForm onSubmit={this.submit}
-                id={this.props.match.params.id} />
+            <DestinationForm onSubmit={this.submit} initialValues={this.state} />
         );
     }
 }
