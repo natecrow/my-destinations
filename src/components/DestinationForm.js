@@ -3,15 +3,10 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
-import {load as loadDestination} from '../redux/destination';
-import {connect} from 'react-redux';
 
-let DestinationForm = ({ handleSubmit, pristine, submitting, reset, load, data }) => (
+let DestinationForm = ({ handleSubmit, pristine, submitting, reset }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Destination to List</h1>
-        <div>
-            <button type="button" onClick={() => load(data)}>Load Default Destination</button>
-        </div>
         <Field name='name' type='text' component={TextField} label='Name' />
         <Field name='cost' type='text' component={TextField} label='Cost' />
         <Field name='dateTimeToVisit' type='text' component={TextField} label='Date to Visit' />
@@ -34,9 +29,7 @@ DestinationForm.propTypes = {
     handleSubmit: PropTypes.any,
     pristine: PropTypes.any,
     submitting: PropTypes.any,
-    reset: PropTypes.any,
-    load: PropTypes.any,
-    data: PropTypes.any
+    reset: PropTypes.any
 }
 
 DestinationForm = reduxForm({
@@ -44,13 +37,5 @@ DestinationForm = reduxForm({
     validate,
     enableReinitialize: true
 })(DestinationForm);
-
-// Connect to destination reducer
-DestinationForm = connect(
-    state => ({
-      initialValues: state.destination.data, // pull initial values from destination reducer
-    }),
-    { load: loadDestination } // bind destination loading action creator
-  )(DestinationForm);
 
 export default DestinationForm;

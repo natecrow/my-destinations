@@ -37,12 +37,14 @@ class DestinationFormContainer extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        this.getDestination(id);
+        if (id) {
+            this.getDestination(id);
+        }
     }
 
     render() {
         return (
-            <DestinationForm onSubmit={this.submit} data={this.state} />
+            <DestinationForm onSubmit={this.submit} initialValues={this.state} />
         );
     }
 }
