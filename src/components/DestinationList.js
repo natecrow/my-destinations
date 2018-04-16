@@ -14,7 +14,7 @@ let DestinationList = ({ destinations }) => (
         <tbody>
             {destinations.map(destination =>
                 <tr key={destination.id}>
-                    <td>{destination.name}</td>
+                    <td><a href={'destinations/' + destination.id}>{destination.name}</a></td>
                     <td>{destination.city}, {destination.state}</td>
                     <td>{destination.dateTimeToVisit}</td>
                     <td>{destination.linkToWebsite}</td>
