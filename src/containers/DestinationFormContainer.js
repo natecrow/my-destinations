@@ -12,7 +12,7 @@ class DestinationFormContainer extends React.Component {
                 console.log('Created destination: ' + JSON.stringify(response.data));
             })
             .catch(error => {
-                console.log('Error creating destination: ' + error);
+                console.error('Error creating destination: ' + error);
             });
     }
 
@@ -25,7 +25,7 @@ class DestinationFormContainer extends React.Component {
                 this.setState(response.data);
             })
             .catch(error => {
-                console.log('Error getting destination: ' + error);
+                console.error('Error getting destination: ' + error);
             });
     }
 

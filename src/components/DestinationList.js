@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-let DestinationList = ({ destinations }) => (
+let DestinationList = ({ destinations, deleteDestination }) => (
     <table>
         <thead>
             <tr>
@@ -9,6 +9,7 @@ let DestinationList = ({ destinations }) => (
                 <th>Location</th>
                 <th>When to Visit</th>
                 <th>Website</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@ let DestinationList = ({ destinations }) => (
                     <td>{destination.city}, {destination.state}</td>
                     <td>{destination.dateTimeToVisit}</td>
                     <td>{destination.linkToWebsite}</td>
+                    <td><button onClick={() => deleteDestination(destination.id)}>Delete</button></td>
                 </tr>
             )}
         </tbody>
@@ -25,7 +27,8 @@ let DestinationList = ({ destinations }) => (
 )
 
 DestinationList.propTypes = {
-    destinations: PropTypes.any
+    destinations: PropTypes.any,
+    deleteDestination: PropTypes.any
 }
 
 export default DestinationList;

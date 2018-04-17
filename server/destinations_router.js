@@ -37,5 +37,16 @@ router.get('/:id', (req, res) => {
         });
 });
 
+// Delete a destination
+router.delete('/:id', (req, res) => {
+    axios.delete(DESTINATIONS_URL + req.params.id)
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch(error => {
+            res.send(error);
+        });
+})
+
 // set router to be the object returned from a require() call
 module.exports = router;
