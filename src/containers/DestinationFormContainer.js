@@ -4,16 +4,49 @@ import axios from 'axios';
 
 class DestinationFormContainer extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            destination: {}
+        }
+
+        this.submit = this.submit.bind(this);
+        this.deleteDestination = this.deleteDestination.bind(this);
+    }
+
     submit(values) {
         console.log('Submitting destination: ' + values + '...');
 
         axios.post('/api/destinations', values)
             .then(response => {
                 console.log('Created destination: ' + JSON.stringify(response.data));
+                this.setState({
+                    destination: {}
+                });
+                this.props.history.push('/destinations');
             })
             .catch(error => {
                 console.error('Error creating destination: ' + error);
             });
+    }
+
+    deleteDestination(id) {
+        if (id) {
+            axios.delete('/api/destinations/' + id)
+                .then(response => {
+                    if (response) {
+                        console.log('Deleted destination with ID ' + id);
+                        this.setState({
+                            destination: {}
+                        });
+                        this.props.history.push('/destinations');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting destination with ID ' + id + ': ' + error);
+                })
+        }
     }
 
     getDestination(id) {
@@ -38,7 +71,8 @@ class DestinationFormContainer extends React.Component {
 
     render() {
         return (
-            <DestinationForm onSubmit={this.submit} initialValues={this.state} />
+            <DestinationForm onSubmit={this.submit} initialValues={this.state}
+                deleteDestination={this.deleteDestination} />
         );
     }
 }
