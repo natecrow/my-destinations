@@ -16,19 +16,35 @@ class DestinationFormContainer extends React.Component {
     }
 
     submit(values) {
-        console.log('Submitting destination: ' + values + '...');
+        console.log('Submitting destination: ' + JSON.stringify(values) + '...');
 
-        axios.post('/api/destinations', values)
-            .then(response => {
-                console.log('Created destination: ' + JSON.stringify(response.data));
-                this.setState({
-                    destination: {}
+        if (values.id) {
+            axios.put('/api/destinations/' + values.id, values)
+                .then(response => {
+                    if (response) {
+                        console.log('Updated destination with ID ' + values.id);
+                        this.setState({
+                            destination: {}
+                        });
+                        this.props.history.push('/destinations');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating destination: ' + error);
                 });
-                this.props.history.push('/destinations');
-            })
-            .catch(error => {
-                console.error('Error creating destination: ' + error);
-            });
+        } else {
+            axios.post('/api/destinations', values)
+                .then(response => {
+                    console.log('Created destination: ' + JSON.stringify(response.data));
+                    this.setState({
+                        destination: {}
+                    });
+                    this.props.history.push('/destinations');
+                })
+                .catch(error => {
+                    console.error('Error creating destination: ' + error);
+                });
+        }
     }
 
     deleteDestination(id) {

@@ -46,7 +46,18 @@ router.delete('/:id', (req, res) => {
         .catch(error => {
             res.send(error);
         });
-})
+});
+
+// Update a destination
+router.put('/:id', (req, res) => {
+    axios.put(DESTINATIONS_URL + req.params.id, req.body)
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch(error => {
+            res.send(error);
+        });
+});
 
 // set router to be the object returned from a require() call
 module.exports = router;

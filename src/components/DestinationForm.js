@@ -7,6 +7,7 @@ import TextField from './fields/TextField';
 let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues }) => (
     <form onSubmit={handleSubmit}>
         <h1>Add Destination to List</h1>
+        <Field name='id' type='hidden' component={TextField} />
         <Field name='name' type='text' component={TextField} label='Name' />
         <Field name='cost' type='text' component={TextField} label='Cost' />
         <Field name='dateTimeToVisit' type='text' component={TextField} label='Date to Visit' />
