@@ -10,7 +10,8 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
         <Field name='id' type='hidden' component={TextField} />
         <Field name='name' type='text' component={TextField} label='Name' />
         <Field name='cost' type='text' component={TextField} label='Cost' />
-        <Field name='dateTimeToVisit' type='text' component={TextField} label='Date to Visit' />
+        <Field name='dateToVisit' type='text' component={TextField} label='Date to Visit' />
+        <Field name='timeToVisit' type='text' component={TextField} label='Time to Visit' />
         <Field name='linkToWebsite' type='text' component={TextField} label='Link to Website' />
         <Field name='phoneNumber' type='text' component={TextField} label='Phone Number' />
         <Field name='notes' type='text' component={TextField} label='Additional Notes' />
