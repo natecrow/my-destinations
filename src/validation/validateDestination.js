@@ -11,6 +11,9 @@ export const validate = values => {
         if (isNaN(Number(values.cost))) {
             errors.cost = 'Must be a number';
         }
+        if (values.cost < 0) {
+            errors.cost = 'Cannot be negative';
+        }
     }
 
     const address = values.address || {};
