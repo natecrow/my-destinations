@@ -16,7 +16,15 @@ let DestinationList = ({ destinations, deleteDestination }) => (
             {destinations.map(destination =>
                 <tr key={destination.id}>
                     <td><a href={'destinations/' + destination.id}>{destination.name}</a></td>
-                    <td>{destination.city}, {destination.state}</td>
+                    {!destination.city && !destination.state &&
+                        <td></td>
+                    }
+                    {destination.city && !destination.state &&
+                        <td>{destination.city}</td>
+                    }
+                    {destination.city && destination.state &&
+                        <td>{destination.city}, {destination.state}</td>
+                    }
                     <td>{destination.dateTimeToVisit}</td>
                     <td>{destination.linkToWebsite}</td>
                     <td><button onClick={() => deleteDestination(destination.id)}>Delete</button></td>

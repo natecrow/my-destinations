@@ -36,15 +36,31 @@ class DestinationListContainer extends React.Component {
                 if (response) {
                     // Store destinations from backend in the state
                     destinations = response.data._embedded.destinations.map(destination => {
+                        let city = null;
+                        let state = null;
+                        let linkToWebsite = null;
+                        if (destination.address != null) {
+                            if (destination.address.city != null) {
+                                city = destination.address.city;
+                            }
+                            if (destination.address.state != null) {
+                                state = destination.address.state;
+                            }
+                        }
+                        if (destination.linkToWebsite != null) {
+                            linkToWebsite = destination.linkToWebsite;
+                        }
+
                         return {
                             id: destination.id,
                             name: destination.name,
-                            state: destination.address.state,
-                            city: destination.address.city,
-                            linkToWebsite: destination.linkToWebsite
+                            city: city,
+                            state: state,
+                            linkToWebsite: linkToWebsite
                         };
                     });
                     this.setState({ destinations: destinations });
+                    console.log(this.state);
                 }
             })
             .catch(error => {
