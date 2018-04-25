@@ -1,37 +1,54 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { withStyles } from 'material-ui';
+import Paper from 'material-ui/Paper';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Button from 'material-ui/Button';
 
-let DestinationList = ({ destinations, deleteDestination }) => (
-    <table>
-        <thead>
-            <tr>
-                <th>Destination</th>
-                <th>Location</th>
-                <th>When to Visit</th>
-                <th>Website</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {destinations.map(destination =>
-                <tr key={destination.id}>
-                    <td><a href={'destinations/' + destination.id}>{destination.name}</a></td>
-                    {!destination.city && !destination.state &&
-                        <td></td>
-                    }
-                    {destination.city && !destination.state &&
-                        <td>{destination.city}</td>
-                    }
-                    {destination.city && destination.state &&
-                        <td>{destination.city}, {destination.state}</td>
-                    }
-                    <td>{destination.dateTimeToVisit}</td>
-                    <td>{destination.linkToWebsite}</td>
-                    <td><button onClick={() => deleteDestination(destination.id)}>Delete</button></td>
-                </tr>
-            )}
-        </tbody>
-    </table>
+const styles = theme => ({
+    root: {
+      width: '100%',
+      marginTop: theme.spacing.unit * 3,
+      overflowX: 'auto',
+    },
+    table: {
+      minWidth: 700,
+    },
+  });
+
+let DestinationList = ({ destinations, deleteDestination }, classes) => (
+    <Paper className={classes.root}>
+        <Table className={classes.table}>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Destination</TableCell>
+                    <TableCell>Location</TableCell>
+                    <TableCell>When to Visit</TableCell>
+                    <TableCell>Website</TableCell>
+                    <TableCell>Delete</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {destinations.map(destination =>
+                    <TableRow key={destination.id}>
+                        <TableCell><a href={'destinations/' + destination.id}>{destination.name}</a></TableCell>
+                        {!destination.city && !destination.state &&
+                            <TableCell></TableCell>
+                        }
+                        {destination.city && !destination.state &&
+                            <TableCell>{destination.city}</TableCell>
+                        }
+                        {destination.city && destination.state &&
+                            <TableCell>{destination.city}, {destination.state}</TableCell>
+                        }
+                        <TableCell>{destination.dateTimeToVisit}</TableCell>
+                        <TableCell>{destination.linkToWebsite}</TableCell>
+                        <TableCell><Button onClick={() => deleteDestination(destination.id)}>Delete</Button></TableCell>
+                    </TableRow>
+                )}
+            </TableBody>
+        </Table>
+    </Paper>
 )
 
 DestinationList.propTypes = {
@@ -39,4 +56,4 @@ DestinationList.propTypes = {
     deleteDestination: PropTypes.any
 }
 
-export default DestinationList;
+export default withStyles(styles)(DestinationList);
