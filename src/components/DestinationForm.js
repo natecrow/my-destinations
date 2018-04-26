@@ -3,9 +3,18 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
+import Button from 'material-ui/Button';
+import { withStyles } from 'material-ui/styles';
 
-let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues }) => (
-    <form onSubmit={handleSubmit}>
+const styles = () => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+});
+
+let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues }, classes) => (
+    <form onSubmit={handleSubmit} className={classes.container}>
         <h1>Add Destination to List</h1>
         <Field name='id' type='hidden' component={TextField} />
         <Field name='name' type='text' component={TextField} label='Name' />
@@ -21,10 +30,10 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
         <Field name='address.state' type='text' component={TextField} label='State' />
         <Field name='address.zip' type='text' component={TextField} label='Zip Code' />
         <div>
-            <button type='submit' disabled={pristine || submitting}>Submit</button>
-            <button type='button' disabled={pristine || submitting} onClick={reset}>Reset</button>
+            <Button type='submit' disabled={pristine || submitting}>Submit</Button>
+            <Button type='button' disabled={pristine || submitting} onClick={reset}>Reset</Button>
             {initialValues.id &&
-                <button type='button' onClick={() => deleteDestination(initialValues.id)}>Delete</button>
+                <Button type='button' onClick={() => deleteDestination(initialValues.id)}>Delete</Button>
             }
         </div>
     </form>
@@ -45,4 +54,4 @@ DestinationForm = reduxForm({
     enableReinitialize: true
 })(DestinationForm);
 
-export default DestinationForm;
+export default withStyles(styles)(DestinationForm);
