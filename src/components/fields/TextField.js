@@ -10,7 +10,7 @@ const styles = theme => ({
     },
 });
 
-const TextField = ({ input, label, type, name, meta: { touched, error, warning } }, classes) => (
+const TextField = ({ input, label, type, name, required, meta: { touched, error, warning } }, classes) => (
     <div>
         {(touched && (error || warning) &&
             <FormControl error aria-describedby={name} className={classes.formControl}>
@@ -25,6 +25,9 @@ const TextField = ({ input, label, type, name, meta: { touched, error, warning }
             <FormControl aria-describedby={name} className={classes.formControl}>
                 <InputLabel htmlFor={name}>{label}</InputLabel>
                 <Input {...input} type={type} />
+                { required &&
+                    <FormHelperText id="name-helper-text">Required</FormHelperText>
+                }
             </FormControl>
         }
     </div>
@@ -35,6 +38,7 @@ TextField.propTypes = {
     label: PropTypes.any,
     type: PropTypes.any,
     name: PropTypes.any,
+    required: PropTypes.any,
     meta: PropTypes.any,
 }
 

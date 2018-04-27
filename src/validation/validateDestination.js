@@ -4,7 +4,7 @@ export const validate = values => {
     };
 
     if (!values.name || values.name === "") {
-        errors.name = 'Name is required';
+        errors.name = 'Required';
     }
 
     if (values.cost) {

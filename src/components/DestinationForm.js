@@ -17,7 +17,7 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
     <form onSubmit={handleSubmit} className={classes.container}>
         <h1>Add Destination to List</h1>
         <Field name='id' type='hidden' component={TextField} />
-        <Field name='name' type='text' component={TextField} label='Name' />
+        <Field name='name' type='text' component={TextField} label='Name' required />
         <Field name='cost' type='text' component={TextField} label='Cost' />
         <Field name='dateToVisit' type='text' component={TextField} label='Date to Visit' />
         <Field name='timeToVisit' type='text' component={TextField} label='Time to Visit' />
