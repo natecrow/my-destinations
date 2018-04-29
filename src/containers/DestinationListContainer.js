@@ -38,6 +38,7 @@ class DestinationListContainer extends React.Component {
                     destinations = response.data._embedded.destinations.map(destination => {
                         let city = null;
                         let state = null;
+                        let dateToVisit = null;
                         let linkToWebsite = null;
                         if (destination.address != null) {
                             if (destination.address.city != null) {
@@ -46,6 +47,9 @@ class DestinationListContainer extends React.Component {
                             if (destination.address.state != null) {
                                 state = destination.address.state;
                             }
+                        }
+                        if (destination.dateToVisit != null) {
+                            dateToVisit = destination.dateToVisit;
                         }
                         if (destination.linkToWebsite != null) {
                             linkToWebsite = destination.linkToWebsite;
@@ -56,6 +60,7 @@ class DestinationListContainer extends React.Component {
                             name: destination.name,
                             city: city,
                             state: state,
+                            dateToVisit: dateToVisit,
                             linkToWebsite: linkToWebsite
                         };
                     });

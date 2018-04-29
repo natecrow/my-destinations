@@ -41,8 +41,8 @@ let DestinationList = ({ destinations, deleteDestination }, classes) => (
                         {destination.city && destination.state &&
                             <TableCell>{destination.city}, {destination.state}</TableCell>
                         }
-                        <TableCell>{destination.dateTimeToVisit}</TableCell>
-                        <TableCell>{destination.linkToWebsite}</TableCell>
+                        <TableCell>{destination.dateToVisit}</TableCell>
+                        <TableCell><a href={destination.linkToWebsite}>{destination.linkToWebsite}</a></TableCell>
                         <TableCell><Button onClick={() => deleteDestination(destination.id)}>Delete</Button></TableCell>
                     </TableRow>
                 )}
