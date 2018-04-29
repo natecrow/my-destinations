@@ -5,6 +5,7 @@ import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
+import { InputAdornment } from 'material-ui/Input';
 
 const styles = () => ({
     container: {
@@ -17,10 +18,10 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
     <form onSubmit={handleSubmit} className={classes.container}>
         <h1>Add Destination to List</h1>
         <Field name='id' type='hidden' component={TextField} />
-        <Field name='name' type='text' component={TextField} label='Name' required />
-        <Field name='cost' type='text' component={TextField} label='Cost' />
-        <Field name='dateToVisit' type='text' component={TextField} label='Date to Visit' />
-        <Field name='timeToVisit' type='text' component={TextField} label='Time to Visit' />
+        <Field name='name' type='text' component={TextField} label='Name' helperText='Required' />
+        <Field name='cost' type='text' component={TextField} label='Cost' adornment={<InputAdornment position="start">$</InputAdornment>} />
+        <Field name='dateToVisit' type='date' component={TextField} label='Date to Visit' shrinkLabel='true'/>
+        <Field name='timeToVisit' type='time' component={TextField} label='Time to Visit' shrinkLabel='true'/>
         <Field name='linkToWebsite' type='text' component={TextField} label='Link to Website' />
         <Field name='phoneNumber' type='text' component={TextField} label='Phone Number' />
         <Field name='notes' type='text' component={TextField} label='Additional Notes' />

@@ -10,12 +10,12 @@ const styles = theme => ({
     },
 });
 
-const TextField = ({ input, label, type, name, required, meta: { touched, error, warning } }, classes) => (
+const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabel, meta: { touched, error, warning } }, classes) => (
     <div>
         {(touched && (error || warning) &&
             <FormControl error aria-describedby={name} className={classes.formControl}>
-                <InputLabel htmlFor={name}>{label}</InputLabel>
-                <Input {...input} type={type} />
+                <InputLabel htmlFor={name} shrink={shrinkLabel}>{label}</InputLabel>
+                <Input {...input} type={type} startAdornment={adornment}/>
                 {
                     (error && <FormHelperText id={name}>{error}</FormHelperText>) ||
                     (warning && <FormHelperText id={name}>{warning}</FormHelperText>)
@@ -23,10 +23,10 @@ const TextField = ({ input, label, type, name, required, meta: { touched, error,
             </FormControl>
         ) ||
             <FormControl aria-describedby={name} className={classes.formControl}>
-                <InputLabel htmlFor={name}>{label}</InputLabel>
-                <Input {...input} type={type} />
-                { required &&
-                    <FormHelperText id="name-helper-text">Required</FormHelperText>
+                <InputLabel htmlFor={name} shrink={shrinkLabel}>{label}</InputLabel>
+                <Input {...input} type={type} startAdornment={adornment}/>
+                { helperText &&
+                    <FormHelperText id="name-helper-text">{helperText}</FormHelperText>
                 }
             </FormControl>
         }
@@ -38,7 +38,9 @@ TextField.propTypes = {
     label: PropTypes.any,
     type: PropTypes.any,
     name: PropTypes.any,
-    required: PropTypes.any,
+    helperText: PropTypes.any,
+    adornment: PropTypes.any,
+    shrinkLabel: PropTypes.any,
     meta: PropTypes.any,
 }
 
