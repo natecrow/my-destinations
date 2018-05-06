@@ -38,6 +38,9 @@ let DestinationList = ({ destinations, deleteDestination }, classes) => (
                         {destination.city && !destination.state &&
                             <TableCell>{destination.city}</TableCell>
                         }
+                        {!destination.city && destination.state &&
+                            <TableCell>{destination.state}</TableCell>
+                        }
                         {destination.city && destination.state &&
                             <TableCell>{destination.city}, {destination.state}</TableCell>
                         }
