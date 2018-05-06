@@ -14,7 +14,7 @@ const styles = theme => ({
     table: {
       minWidth: 700,
     },
-  });
+});
 
 let DestinationList = ({ destinations, deleteDestination }, classes) => (
     <Paper className={classes.root}>
