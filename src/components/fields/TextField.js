@@ -27,14 +27,14 @@ const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabe
 )
 
 TextField.propTypes = {
-    input: PropTypes.any,
-    label: PropTypes.any,
-    type: PropTypes.any,
-    name: PropTypes.any,
-    helperText: PropTypes.any,
-    adornment: PropTypes.any,
-    shrinkLabel: PropTypes.any,
-    meta: PropTypes.any,
+    input: PropTypes.string,
+    label: PropTypes.string,
+    type: PropTypes.string,
+    name: PropTypes.string,
+    helperText: PropTypes.string,
+    adornment: PropTypes.object,
+    shrinkLabel: PropTypes.string,
+    meta: PropTypes.object,
 }
 
 export default TextField;

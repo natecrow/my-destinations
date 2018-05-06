@@ -46,12 +46,12 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
 );
 
 DestinationForm.propTypes = {
-    handleSubmit: PropTypes.any,
-    pristine: PropTypes.any,
-    submitting: PropTypes.any,
-    reset: PropTypes.any,
-    deleteDestination: PropTypes.any,
-    initialValues: PropTypes.any
+    handleSubmit: PropTypes.function,
+    pristine: PropTypes.boolean,
+    submitting: PropTypes.boolean,
+    reset: PropTypes.function,
+    deleteDestination: PropTypes.function,
+    initialValues: PropTypes.object
 }
 
 DestinationForm = reduxForm({
