@@ -56,7 +56,7 @@ let DestinationList = ({ destinations, deleteDestination }, classes) => (
 
 DestinationList.propTypes = {
     destinations: PropTypes.array,
-    deleteDestination: PropTypes.function
+    deleteDestination: PropTypes.func
 }
 
 export default withStyles(styles)(DestinationList);

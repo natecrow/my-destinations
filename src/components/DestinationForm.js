@@ -46,11 +46,11 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
 );
 
 DestinationForm.propTypes = {
-    handleSubmit: PropTypes.function,
-    pristine: PropTypes.boolean,
-    submitting: PropTypes.boolean,
-    reset: PropTypes.function,
-    deleteDestination: PropTypes.function,
+    handleSubmit: PropTypes.func,
+    pristine: PropTypes.bool,
+    submitting: PropTypes.bool,
+    reset: PropTypes.func,
+    deleteDestination: PropTypes.func,
     initialValues: PropTypes.object
 }
 

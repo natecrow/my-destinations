@@ -34,7 +34,11 @@ TextField.propTypes = {
     helperText: PropTypes.string,
     adornment: PropTypes.object,
     shrinkLabel: PropTypes.string,
-    meta: PropTypes.object,
+    meta: PropTypes.shape ({
+        touched: PropTypes.bool,
+        error: PropTypes.object,
+        warning: PropTypes.object
+    })
 }
 
 export default TextField;

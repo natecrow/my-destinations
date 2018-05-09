@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DestinationForm from '../components/DestinationForm';
 import axios from 'axios';
 
@@ -79,6 +80,7 @@ class DestinationFormContainer extends React.Component {
     }
 
     componentDidMount() {
+        // id from the url parameter
         const id = this.props.match.params.id;
         if (id) {
             this.getDestination(id);
@@ -91,6 +93,11 @@ class DestinationFormContainer extends React.Component {
                 deleteDestination={this.deleteDestination} />
         );
     }
+}
+
+DestinationFormContainer.propTypes = {
+    match: PropTypes.object,
+    history: PropTypes.object
 }
 
 export default DestinationFormContainer;
