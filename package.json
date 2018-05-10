@@ -6,8 +6,6 @@
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
     "material-ui": "^1.0.0-beta.43",
     "prop-types": "^15.6.0",
@@ -16,14 +14,16 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.4",
-    "react-test-renderer": "^16.3.2",
     "redux": "^3.7.2",
     "redux-form": "^7.1.1"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.9.0",
     "eslint-plugin-react": "^7.4.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "react-test-renderer": "^16.3.2"
   },
   "plugins": [
     "react"
@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "dev": "nodemon index.js",
     "eject": "react-scripts eject",
-    "start": "concurrently --kill-others --raw \"react-scripts start\" \"node server/server.js\" || true",
+    "start": "concurrently --kill-others --raw \"react-scripts start\" \"node src/server/server.js\" || true",
     "test": "react-scripts test --env=jsdom"
   },
   "proxy": "http://localhost:3001"
