@@ -1,0 +1,74 @@
+{
+    "_embedded": {
+        "destinations": [
+            {
+                "id": 1,
+                "address": {
+                    "street": "85 N Policy St",
+                    "city": "Salem",
+                    "state": "NH",
+                    "zip": "03079",
+                    "linkToMap": "https://goo.gl/maps/EmnxkbA6tgJ2",
+                    "_links": {
+                        "destination": {
+                            "href": "http://localhost:8080/destinations/1"
+                        }
+                    }
+                },
+                "name": "Canobie Lake Park",
+                "cost": 39,
+                "dateToVisit": "2018-05-26",
+                "timeToVisit": "10:00:00",
+                "linkToWebsite": "http://www.canobie.com/",
+                "phoneNumber": "603-123-1234",
+                "notes": "Best to go on a Spring weekend or Summer weekday. ~1 hr drive from Dover, NH.",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/destinations/1"
+                    },
+                    "destination": {
+                        "href": "http://localhost:8080/destinations/1"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "address": {
+                    "street": "7 Pawtuckaway Road",
+                    "city": "Nottingham",
+                    "state": "NH",
+                    "zip": "03290",
+                    "linkToMap": "https://goo.gl/maps/F3STETRbbNx",
+                    "_links": {
+                        "destination": {
+                            "href": "http://localhost:8080/destinations/3"
+                        }
+                    }
+                },
+                "name": "Pawtuckaway State Park",
+                "cost": 39,
+                "dateToVisit": "2018-06-09",
+                "timeToVisit": "09:00:00",
+                "linkToWebsite": "https://www.nhstateparks.org/visit/state-parks/pawtuckaway-state-park.aspx",
+                "phoneNumber": "603-895-3031",
+                "notes": "",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/destinations/3"
+                    },
+                    "destination": {
+                        "href": "http://localhost:8080/destinations/3"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/destinations"
+        },
+        "profile": {
+            "href": "http://localhost:8080/profile/destinations"
+        }
+    }
+}
