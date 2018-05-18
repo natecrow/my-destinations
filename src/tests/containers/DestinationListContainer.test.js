@@ -19,12 +19,12 @@ describe('DestinationListContainer tests', () => {
         shallow(<DestinationListContainerTest />);
     });
 
-    it('get all destinations from API and map them to the state', async () => {
+    it('gets all destinations from API and map them to the state', async () => {
         // setup
         const destinationListContainerTest = shallow(<DestinationListContainerTest />);
 
         mockAxios.get.mockImplementationOnce(
-            jest.fn(() => Promise.resolve({ data: getAllDestinationsResponseMock}))
+            jest.fn(() => Promise.resolve({ data: getAllDestinationsResponseMock }))
         )
 
         const expectedDestinations = {
@@ -56,7 +56,7 @@ describe('DestinationListContainer tests', () => {
         expect(destinationListContainerTest.instance().state).toEqual(expectedDestinations);
     });
 
-    it('delete a destination and remove it from the state', async () => {
+    it('deletes a destination and removes it from the state', async () => {
         // setup
         const destinationListContainerTest = shallow(<DestinationListContainerTest />);
 

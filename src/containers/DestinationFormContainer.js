@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DestinationForm from '../components/DestinationForm';
 import axios from 'axios';
+import DestinationMapper from '../utils/DestinationMapper';
 
 class DestinationFormContainer extends React.Component {
 
@@ -66,17 +67,19 @@ class DestinationFormContainer extends React.Component {
         }
     }
 
-    getDestination(id) {
+    async getDestination(id) {
         console.log('Getting destination with id ' + id + '...');
 
-        axios.get('/api/destinations/' + id)
-            .then(response => {
+        try {
+            const response = await axios.get('/api/destinations/' + id);
+
+            if (response) {
                 console.log('Got destination: ' + JSON.stringify(response.data));
-                this.setState(response.data);
-            })
-            .catch(error => {
-                console.error('Error getting destination: ' + error);
-            });
+                this.setState({destination: DestinationMapper.mapDestinationToForm(response.data)});
+            }
+        } catch (error) {
+            console.error('Error getting destination: ' + error);
+        }
     }
 
     componentDidMount() {
@@ -89,7 +92,7 @@ class DestinationFormContainer extends React.Component {
 
     render() {
         return (
-            <DestinationForm onSubmit={this.submit} initialValues={this.state}
+            <DestinationForm onSubmit={this.submit} initialValues={this.state.destination}
                 deleteDestination={this.deleteDestination} />
         );
     }

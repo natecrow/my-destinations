@@ -1,7 +1,7 @@
 import React from 'react';
 import DestinationList from './../components/DestinationList';
 import axios from 'axios';
-import mapDestination from '../utils/mapDestination';
+import DestinationMapper from '../utils/DestinationMapper';
 
 class DestinationListContainer extends React.Component {
 
@@ -36,8 +36,7 @@ class DestinationListContainer extends React.Component {
             
             // Store destinations from response in the state
             const destinationsFromResponse = response.data._embedded.destinations.map(destination => {
-                const mappedDestination = mapDestination(destination);
-                return mappedDestination;
+                return DestinationMapper.mapDestinationToList(destination);
             });
             this.setState({ destinations: destinationsFromResponse });
             console.log(this.state);

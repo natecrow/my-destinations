@@ -1,6 +1,6 @@
-import mapDestination from '../../utils/mapDestination';
+import DestinationMapper from '../../utils/DestinationMapper';
 
-describe('mapDestination()', () => {
+describe('mapDestinationToList()', () => {
     let inputDestination = {
         id: 1,
         name: 'test'
@@ -15,7 +15,7 @@ describe('mapDestination()', () => {
     }
 
     it('maps destination with minimum data', () => {
-        expect(mapDestination(inputDestination)).toEqual(expectedOutput);
+        expect(DestinationMapper.mapDestinationToList(inputDestination)).toEqual(expectedOutput);
     });
 
     it('maps destination with city, state, date to visit, and link to website', () => {
@@ -36,6 +36,6 @@ describe('mapDestination()', () => {
             linkToWebsite: 'www.test.com'
         };
         
-        expect(mapDestination(inputDestination)).toEqual(expectedOutput);
+        expect(DestinationMapper.mapDestinationToList(inputDestination)).toEqual(expectedOutput);
     });
 });
