@@ -17,31 +17,37 @@ class DestinationFormContainer extends React.Component {
         this.deleteDestination = this.deleteDestination.bind(this);
     }
 
-    submit(values) {
+    async submit(values) {
         if (values.id) {
-            axios.put('/api/destinations/' + values.id, values)
-                .then(response => {
-                    if (response) {
-                        this.setState({
-                            destination: {}
-                        });
-                        this.props.history.push('/destinations');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error updating destination: ' + error);
-                });
-        } else {
-            axios.post('/api/destinations', values)
-                .then(() => {
+            try {
+                const response = await axios.put('/api/destinations/' + values.id, values);
+
+                // Clear the submitted destination from the state
+                // and go to list page
+                if (response) {
                     this.setState({
                         destination: {}
                     });
                     this.props.history.push('/destinations');
-                })
-                .catch(error => {
-                    console.error('Error creating destination: ' + error);
-                });
+                }
+            } catch(error) {
+                console.error('Error updating destination: ' + error);
+            }
+        } else {
+            try {
+                const response = await axios.post('/api/destinations', values)
+
+                // Clear the submitted destination from the state
+                // and go to list page
+                if (response) {
+                    this.setState({
+                        destination: {}
+                    });
+                    this.props.history.push('/destinations');
+                }
+            } catch(error) {
+                console.error('Error creating destination: ' + error);
+            }
         }
     }
 
