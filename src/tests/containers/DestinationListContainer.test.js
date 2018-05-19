@@ -6,6 +6,7 @@ import getAllDestinationsResponseMock from '../resources/getAllDestinationsRespo
 
 describe('DestinationListContainer tests', () => {
     let DestinationListContainerTest;
+    let destinationListContainerTest;
 
     beforeAll(() => {
         DestinationListContainerTest = class extends DestinationListContainer {
@@ -13,6 +14,7 @@ describe('DestinationListContainer tests', () => {
                 // do nothing
             }
         };
+        destinationListContainerTest = shallow(<DestinationListContainerTest />);
     });
 
     it('renders without crashing', () => {
@@ -21,8 +23,6 @@ describe('DestinationListContainer tests', () => {
 
     it('gets all destinations from API and map them to the state', async () => {
         // setup
-        const destinationListContainerTest = shallow(<DestinationListContainerTest />);
-
         mockAxios.get.mockImplementationOnce(
             jest.fn(() => Promise.resolve({ data: getAllDestinationsResponseMock }))
         )
@@ -58,8 +58,6 @@ describe('DestinationListContainer tests', () => {
 
     it('deletes a destination and removes it from the state', async () => {
         // setup
-        const destinationListContainerTest = shallow(<DestinationListContainerTest />);
-
         const initialDestinations = {
             destinations: [
                 {
@@ -100,5 +98,5 @@ describe('DestinationListContainer tests', () => {
         expect(mockAxios.delete).toHaveBeenCalledTimes(1);
         expect(mockAxios.delete).toHaveBeenCalledWith('/api/destinations/1');
         expect(destinationListContainerTest.instance().state).toEqual(expectedDestinations);
-    })
-})
+    });
+});

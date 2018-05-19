@@ -21,7 +21,6 @@ class DestinationListContainer extends React.Component {
 
             // Remove the deleted destination from the state
             if (response) {
-                console.log('Deleted destination with ID ' + id);
                 const destinations = this.state.destinations.filter(destination => destination.id !== id);
                 this.setState({ destinations: destinations });
             }
@@ -39,7 +38,6 @@ class DestinationListContainer extends React.Component {
                 return DestinationMapper.mapDestinationToList(destination);
             });
             this.setState({ destinations: destinationsFromResponse });
-            console.log(this.state);
         } catch (error) {
             console.log('Error getting destinations: ' + error);
         }
