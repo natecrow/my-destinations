@@ -39,10 +39,10 @@ describe('DestinationFormContainer tests', () => {
             destination: {
                 id: 1,
                 address: {
-                    street: "7 Pawtuckaway Road",
-                    city: "Nottingham",
-                    state: "NH",
-                    zip: "03290",
+                    street: '7 Pawtuckaway Road',
+                    city: 'Nottingham',
+                    state: 'NH',
+                    zip: '03290',
                     linkToMap: 'https://goo.gl/maps/F3STETRbbNx'
                 },
                 name: 'Pawtuckaway State Park',
@@ -70,10 +70,10 @@ describe('DestinationFormContainer tests', () => {
             destination: {
                 id: 1,
                 address: {
-                    street: "7 Pawtuckaway Road",
-                    city: "Nottingham",
-                    state: "NH",
-                    zip: "03290",
+                    street: '7 Pawtuckaway Road',
+                    city: 'Nottingham',
+                    state: 'NH',
+                    zip: '03290',
                     linkToMap: 'https://goo.gl/maps/F3STETRbbNx'
                 },
                 name: 'Pawtuckaway State Park',
@@ -106,10 +106,10 @@ describe('DestinationFormContainer tests', () => {
         // setup
         const formInputValues = {
             address: {
-                street: "7 Pawtuckaway Road",
-                city: "Nottingham",
-                state: "NH",
-                zip: "03290",
+                street: '7 Pawtuckaway Road',
+                city: 'Nottingham',
+                state: 'NH',
+                zip: '03290',
                 linkToMap: 'https://goo.gl/maps/F3STETRbbNx'
             },
             name: 'Pawtuckaway State Park',
@@ -138,10 +138,10 @@ describe('DestinationFormContainer tests', () => {
         const formInputValues = {
             id: 1,
             address: {
-                street: "7 Pawtuckaway Road",
-                city: "Nottingham",
-                state: "NH",
-                zip: "03290",
+                street: '7 Pawtuckaway Road',
+                city: 'Nottingham',
+                state: 'NH',
+                zip: '03290',
                 linkToMap: 'https://goo.gl/maps/F3STETRbbNx'
             },
             name: 'Pawtuckaway State Park',
