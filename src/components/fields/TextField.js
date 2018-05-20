@@ -6,7 +6,7 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabel, meta: { touched, error, warning } }, classes) => (
     <div>
         {(touched && (error || warning) &&
-            <FormControl error aria-describedby={name} margin='theme.spacing.unit' style={{marginBottom: '1rem'}}>
+            <FormControl error aria-describedby={name} className={classes.formControl} fullWidth style={{marginBottom: '1rem'}}>
                 <InputLabel htmlFor={name} shrink={shrinkLabel}>{label}</InputLabel>
                 <Input {...input} type={type} startAdornment={adornment} style={{marginRight: '1rem'}}/>
                 {
@@ -18,8 +18,8 @@ const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabe
             <FormControl aria-describedby={name} className={classes.formControl} fullWidth style={{marginBottom: '1rem'}}>
                 <InputLabel htmlFor={name} shrink={shrinkLabel}>{label}</InputLabel>
                 <Input {...input} type={type} startAdornment={adornment} style={{marginRight: '1rem'}}/>
-                { helperText &&
-                    <FormHelperText id="name-helper-text">{helperText}</FormHelperText>
+                { 
+                    (helperText && <FormHelperText id={name}>{helperText}</FormHelperText>)
                 }
             </FormControl>
         }
@@ -36,8 +36,8 @@ TextField.propTypes = {
     shrinkLabel: PropTypes.string,
     meta: PropTypes.shape ({
         touched: PropTypes.bool,
-        error: PropTypes.object,
-        warning: PropTypes.object
+        error: PropTypes.string,
+        warning: PropTypes.string
     })
 }
 
