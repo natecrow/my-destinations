@@ -1,7 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 
 const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabel, meta: { touched, error, warning } }, classes) => (
     <div>

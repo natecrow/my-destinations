@@ -1,7 +1,8 @@
 import React from 'react';
 import TextField from '../../../components/fields/TextField';
 import { mount, shallow } from 'enzyme';
-import { FormControl, FormHelperText } from 'material-ui';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 it('renders without crashing', () => {
     // Setup

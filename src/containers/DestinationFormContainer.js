@@ -11,7 +11,7 @@ class DestinationFormContainer extends React.Component {
 
         this.state = {
             destination: {}
-        }
+        };
 
         this.submit = this.submit.bind(this);
         this.deleteDestination = this.deleteDestination.bind(this);

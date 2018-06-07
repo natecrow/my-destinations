@@ -5,14 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './store';
 import App from './components/App';
 import './style/index.css';
+// import { MuiThemeProvider } from '@material-ui/core';
 
 ReactDOM.render(
-  (
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  ),
-  document.getElementById('root')
+    (
+        <Provider store={store}>
+            <BrowserRouter>
+                {/* <MuiThemeProvider> */}
+                    <App />
+                {/* </MuiThemeProvider> */}
+            </BrowserRouter>
+        </Provider>
+    ),
+    document.getElementById('root')
 );

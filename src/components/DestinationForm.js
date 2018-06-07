@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { validate } from './../validation/validateDestination';
 import TextField from './fields/TextField';
-import Button from 'material-ui/Button';
-import { InputAdornment } from 'material-ui/Input';
+import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/Input';
 
 let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues }) => (
     <div>

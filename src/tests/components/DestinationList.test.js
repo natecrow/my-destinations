@@ -1,7 +1,7 @@
 import React from 'react';
 import DestinationList from '../../components/DestinationList';
 import { mount, shallow } from 'enzyme';
-import { TableCell } from 'material-ui';
+import TableCell from '@material-ui/core/TableCell';
 
 it('renders without crashing', () => {
     shallow(<DestinationList />);

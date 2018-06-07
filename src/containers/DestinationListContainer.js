@@ -1,5 +1,5 @@
 import React from 'react';
-import DestinationList from './../components/DestinationList';
+import DestinationList from '../components/DestinationList';
 import axios from 'axios';
 import DestinationMapper from '../utils/DestinationMapper';
 
@@ -10,7 +10,7 @@ class DestinationListContainer extends React.Component {
         
         this.state = {
             destinations: []
-        }
+        };
 
         this.deleteDestination = this.deleteDestination.bind(this);
     }
