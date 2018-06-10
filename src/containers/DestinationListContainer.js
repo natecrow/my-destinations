@@ -2,12 +2,13 @@ import React from 'react';
 import DestinationList from '../components/DestinationList';
 import axios from 'axios';
 import DestinationMapper from '../utils/DestinationMapper';
+import EmptyDestinationList from '../components/EmptyDestinationList';
 
 class DestinationListContainer extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             destinations: []
         };
@@ -32,7 +33,7 @@ class DestinationListContainer extends React.Component {
     async getAllDestinations() {
         try {
             const response = await axios.get('/api/destinations');
-            
+
             // Store destinations from response in the state
             const destinationsFromResponse = response.data._embedded.destinations.map(destination => {
                 return DestinationMapper.mapDestinationToList(destination);
@@ -48,10 +49,14 @@ class DestinationListContainer extends React.Component {
     }
 
     render() {
-        return (
-            <DestinationList destinations={this.state.destinations}
-                deleteDestination={this.deleteDestination} />
-        );
+        if (this.state.destinations === []) {
+            return (
+                <DestinationList destinations={this.state.destinations}
+                    deleteDestination={this.deleteDestination} />
+            );
+        } else {
+            return <EmptyDestinationList />;
+        }
     }
 }
 
