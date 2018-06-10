@@ -51,7 +51,6 @@ const TopBar = ({ handleMenuToggle, classes }) => (
 
 TopBar.propTypes = {
     handleMenuToggle: PropTypes.func.isRequired,
-    mobileOpen: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
