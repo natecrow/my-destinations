@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import TableCell from '@material-ui/core/TableCell';
 
 it('renders without crashing', () => {
-    shallow(<DestinationList />);
+    shallow(<DestinationList destinations={[]} />);
 });
 
 describe('location cell', () => {
