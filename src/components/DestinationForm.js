@@ -32,8 +32,8 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
                 <Field name='notes' type='text' component={TextField} label='Additional Notes' />
             </section>
             <section style={{ display: 'flex', flexFlow: 'row wrap' }}>
-                <Field name='dateToVisit' type='date' component={TextField} label='Date to Visit' shrinkLabel='true' />
-                <Field name='timeToVisit' type='time' component={TextField} label='Time to Visit' shrinkLabel='true' />
+                <Field name='dateToVisit' type='date' component={TextField} label='Date to Visit' shrinkLabel={true} />
+                <Field name='timeToVisit' type='time' component={TextField} label='Time to Visit' shrinkLabel={true} />
             </section>
             <div>
                 <Button type='submit' disabled={pristine || submitting}>Submit</Button>

@@ -30,12 +30,12 @@ class DestinationFormContainer extends React.Component {
                     });
                     this.props.history.push('/destinations');
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error('Error updating destination: ' + error);
             }
         } else {
             try {
-                const response = await axios.post('/api/destinations', values)
+                const response = await axios.post('/api/destinations/', values)
 
                 // Clear the submitted destination from the state
                 // and go to list page
@@ -45,7 +45,7 @@ class DestinationFormContainer extends React.Component {
                     });
                     this.props.history.push('/destinations');
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error('Error creating destination: ' + error);
             }
         }
@@ -63,7 +63,7 @@ class DestinationFormContainer extends React.Component {
                     });
                     this.props.history.push('/destinations');
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error('Error deleting destination with ID ' + id + ': ' + error);
             }
         }
@@ -74,7 +74,7 @@ class DestinationFormContainer extends React.Component {
             const response = await axios.get('/api/destinations/' + id);
 
             if (response) {
-                this.setState({destination: DestinationMapper.mapDestinationToForm(response.data)});
+                this.setState({ destination: DestinationMapper.mapDestinationToForm(response.data) });
             }
         } catch (error) {
             console.error('Error getting destination: ' + error);

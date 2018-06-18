@@ -35,7 +35,7 @@ TextField.propTypes = {
     name: PropTypes.string,
     helperText: PropTypes.string,
     adornment: PropTypes.object,
-    shrinkLabel: PropTypes.string,
+    shrinkLabel: PropTypes.bool,
     meta: PropTypes.shape ({
         touched: PropTypes.bool,
         error: PropTypes.string,

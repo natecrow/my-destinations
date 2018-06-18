@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let destinations = require('./destinations_router.js');
 app.use('/api/destinations', destinations);
 
+// Set up routes for lists of destinations
+let destinationsLists = require('./destinations_lists_router.js');
+app.use('/api/destinationsLists', destinationsLists);
+
 app.listen(PORT, () => {
     console.log('Listening on port ' + PORT);
 })
