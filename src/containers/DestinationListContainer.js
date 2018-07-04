@@ -49,13 +49,13 @@ class DestinationListContainer extends React.Component {
     }
 
     render() {
-        if (this.state.destinations === []) {
+        if (this.state.destinations === undefined || this.state.destinations.length === 0) {
+            return <EmptyDestinationList />;
+        } else {
             return (
                 <DestinationList destinations={this.state.destinations}
                     deleteDestination={this.deleteDestination} />
             );
-        } else {
-            return <EmptyDestinationList />;
         }
     }
 }
