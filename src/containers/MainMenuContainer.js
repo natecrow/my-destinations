@@ -13,7 +13,8 @@ class MainMenuContainer extends React.Component {
 
         this.state = {
             mobileOpen: false,
-            showListFormDialog: false
+            showListFormDialog: false,
+            listsOfDestinations: []
         };
 
         this.handleMenuToggle = this.handleMenuToggle.bind(this);
@@ -45,10 +46,34 @@ class MainMenuContainer extends React.Component {
                     showListFormDialog: false
                 });
             }
-
         } catch (error) {
             console.error('Error creating destination list: ' + error);
         }
+    }
+
+    async getAllListsOfDestinations() {
+        try {
+            const response = await axios.get('/api/destinationsLists');
+
+            // Store lists from response in the state
+            let listsFromResponse = response.data._embedded.destinationsLists.map(destination => {
+                return {
+                    id: destination.id,
+                    name: destination.name
+                }
+            });
+
+            // alphabetize the list of lists
+            listsFromResponse = listsFromResponse.sort((a, b) => a.name > b.name);
+
+            this.setState({ listsOfDestinations: listsFromResponse });
+        } catch (error) {
+            console.log('Error getting lists of destinations: ' + error);
+        }
+    }
+
+    componentDidMount() {
+        this.getAllListsOfDestinations();
     }
 
     render() {
@@ -59,7 +84,8 @@ class MainMenuContainer extends React.Component {
                     mobileOpen={this.state.mobileOpen}
                     handleListFormOpen={this.handleListFormOpen}
                     handleListFormClose={this.handleListFormClose}
-                    showListFormDialog={this.state.showListFormDialog} />
+                    showListFormDialog={this.state.showListFormDialog} 
+                    listsOfDestinations={this.state.listsOfDestinations} />
                 <ListFormDialog handleListFormClose={this.handleListFormClose}
                     showListFormDialog={this.state.showListFormDialog}
                     onSubmit={this.createListOfDestinations} />

@@ -16,7 +16,7 @@ const styles = theme => ({
     }
 });
 
-const SideMenu = ({ classes, theme, handleMenuToggle, mobileOpen, handleListFormOpen, handleListFormClose, showListFormDialog }) => (
+const SideMenu = ({ classes, theme, handleMenuToggle, mobileOpen, handleListFormOpen, handleListFormClose, showListFormDialog, listsOfDestinations }) => (
     <div>
         <Hidden mdUp>
             <Drawer
@@ -33,7 +33,8 @@ const SideMenu = ({ classes, theme, handleMenuToggle, mobileOpen, handleListForm
             >
                 <SideMenuList handleListFormOpen={handleListFormOpen}
                             handleListFormClose={handleListFormClose}
-                            listFormOpen={showListFormDialog} />
+                            listFormOpen={showListFormDialog}
+                            listsOfDestinations={listsOfDestinations} />
             </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
@@ -46,7 +47,8 @@ const SideMenu = ({ classes, theme, handleMenuToggle, mobileOpen, handleListForm
             >
                 <SideMenuList handleListFormOpen={handleListFormOpen}
                             handleListFormClose={handleListFormClose}
-                            showListFormDialog={showListFormDialog} />
+                            showListFormDialog={showListFormDialog}
+                            listsOfDestinations={listsOfDestinations} />
             </Drawer>
         </Hidden>
     </div>
@@ -60,6 +62,7 @@ SideMenu.propTypes = {
     showListFormDialog: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
+    listsOfDestinations: PropTypes.array
 };
 
 export default withStyles(styles, { withTheme: true })(SideMenu);
