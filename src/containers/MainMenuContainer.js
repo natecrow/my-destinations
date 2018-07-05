@@ -42,10 +42,11 @@ class MainMenuContainer extends React.Component {
             // Clear and close the form after submit succeeds
             if (response) {
                 dispatch(reset('destinationsList'));
-                this.setState({
-                    showListFormDialog: false
-                });
+                this.handleListFormClose();
             }
+
+            // Get all the lists again with the new one added
+            this.getAllListsOfDestinations();
         } catch (error) {
             console.error('Error creating destination list: ' + error);
         }
