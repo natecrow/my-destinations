@@ -36,6 +36,7 @@ const App = ({ classes }) => (
             <Switch>
                 <Route exact path='/' component={DestinationListContainer} />
                 <Route exact path='/destinations' component={DestinationListContainer} />
+                <Route exact path='/destination-lists/:id([0-9]*)' component={DestinationListContainer} />
                 <Route exact path='/destinations/new' component={DestinationFormContainer} />
                 <Route exact path='/destinations/:id([0-9]*)' component={DestinationFormContainer} />
             </Switch>

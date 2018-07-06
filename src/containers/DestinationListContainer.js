@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DestinationList from '../components/DestinationList';
 import axios from 'axios';
 import DestinationMapper from '../utils/DestinationMapper';
@@ -10,7 +11,8 @@ class DestinationListContainer extends React.Component {
         super(props);
 
         this.state = {
-            destinations: []
+            destinations: [],
+            destinationListId: undefined
         };
 
         this.deleteDestination = this.deleteDestination.bind(this);
@@ -38,14 +40,52 @@ class DestinationListContainer extends React.Component {
             const destinationsFromResponse = response.data._embedded.destinations.map(destination => {
                 return DestinationMapper.mapDestinationToList(destination);
             });
-            this.setState({ destinations: destinationsFromResponse });
+            this.setState({
+                destinations: destinationsFromResponse,
+                destinationListId: undefined
+            });
+        } catch (error) {
+            console.log('Error getting destinations: ' + error);
+        }
+    }
+
+    async getAllDestinationsForList(id) {
+        try {
+            const response = await axios.get('/api/destinationsLists/' + id + '/destinations');
+
+            // Store destinations from response in the state
+            const destinationsFromResponse = response.data._embedded.destinations.map(destination => {
+                return DestinationMapper.mapDestinationToList(destination);
+            });
+            this.setState({
+                destinations: destinationsFromResponse,
+                destinationListId: id
+            });
         } catch (error) {
             console.log('Error getting destinations: ' + error);
         }
     }
 
     componentDidMount() {
-        this.getAllDestinations();
+        // id from the url parameter
+        const id = this.props.match.params.id;
+        if (id) {
+            this.getAllDestinationsForList(id);
+        } else {
+            this.getAllDestinations();
+        }
+    }
+
+    componentDidUpdate() {
+        // ID from the url parameter
+        const id = this.props.match.params.id;
+
+        // Only update the list if it hasn't already updated
+        if (id !== undefined && id !== this.state.destinationListId) {
+            this.getAllDestinationsForList(id);
+        } else if (id === undefined && id !== this.state.destinationListId) {
+            this.getAllDestinations();
+        }
     }
 
     render() {
@@ -58,6 +98,11 @@ class DestinationListContainer extends React.Component {
             );
         }
     }
+}
+
+DestinationListContainer.propTypes = {
+    match: PropTypes.object,
+    history: PropTypes.object
 }
 
 export default DestinationListContainer;

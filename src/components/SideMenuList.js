@@ -41,12 +41,14 @@ const SideMenuList = ({ classes, handleListFormOpen, listsOfDestinations }) => (
         <Divider />
         <List subheader={<ListSubheader>Lists</ListSubheader>}>
             {listsOfDestinations.map(list => 
-                <ListItem button key={list.id}>
-                    <ListItemIcon>
-                        <AssignmentIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={list.name} />
-                </ListItem>
+                <Link to={'/destination-lists/' + list.id} className={classes.link} key={list.id}>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AssignmentIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={list.name} />
+                    </ListItem>
+                </Link>
             )}
             <ListItem button onClick={handleListFormOpen}>
                 <ListItemIcon>
