@@ -11,11 +11,17 @@ import AddIcon from '@material-ui/icons/Add';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
+const drawerWidth = 240;
+
 const styles = theme => ({
     toolbar: theme.mixins.toolbar,
     link: {
         color: '#FFFFFF',
         textDecoration: 'none'
+    },
+    subheaderButton: {
+        display: 'inline',
+        left: drawerWidth/2.25 + 'px'
     }
 });
 
@@ -39,7 +45,11 @@ const SideMenuList = ({ classes, handleListFormOpen, listsOfDestinations }) => (
             </Link>
         </List>
         <Divider />
-        <List subheader={<ListSubheader>Lists</ListSubheader>}>
+        <List>
+            <ListSubheader>
+                Lists
+                <ListItem button className={classes.subheaderButton}>Edit</ListItem>
+            </ListSubheader>
             {listsOfDestinations.map(list => 
                 <Link to={'/destination-lists/' + list.id} className={classes.link} key={list.id}>
                     <ListItem button>
