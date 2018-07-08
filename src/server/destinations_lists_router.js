@@ -56,4 +56,17 @@ router.get('/:id/destinations', async (req, res) => {
     }
 })
 
+// Delete a list
+router.delete('/:id', async (req, res) => {
+    try {
+        const response = await axios.delete(DESTINATIONS_LISTS_URL + req.params.id);
+
+        if (response) {
+            res.send(response.data);
+        }
+    } catch (error) {
+        res.send(error);
+    }
+})
+
 module.exports = router;

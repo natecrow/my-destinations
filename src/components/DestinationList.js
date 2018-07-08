@@ -7,9 +7,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
-let DestinationList = ({ destinations, deleteDestination, name }) => (
+let DestinationList = ({ destinations, deleteDestination, name, deleteList, listId }) => (
     <div>
         <h1>{name}</h1>
+        {deleteList && <Button color='secondary' onClick={() => deleteList(listId)}>Delete List</Button>}
         <Table>
             <TableHead>
                 <TableRow>
@@ -49,7 +50,9 @@ let DestinationList = ({ destinations, deleteDestination, name }) => (
 DestinationList.propTypes = {
     destinations: PropTypes.array.isRequired,
     deleteDestination: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired
+    deleteList: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    listId: PropTypes.string
 }
 
 export default DestinationList;

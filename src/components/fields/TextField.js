@@ -29,7 +29,7 @@ const TextField = ({ input, label, type, name, helperText, adornment, shrinkLabe
 )
 
 TextField.propTypes = {
-    input: PropTypes.string,
+    input: PropTypes.any,
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,

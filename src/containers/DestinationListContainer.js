@@ -17,6 +17,7 @@ class DestinationListContainer extends React.Component {
         };
 
         this.deleteDestination = this.deleteDestination.bind(this);
+        this.deleteList = this.deleteList.bind(this);
     }
 
     async deleteDestination(id) {
@@ -60,7 +61,7 @@ class DestinationListContainer extends React.Component {
                 destinationListName: name
             })
         } catch (error) {
-            console.log('Error getting name of destination list ' + id + ' + error');
+            console.log('Error getting name of destination list with ID ' + id + ': ' + error);
         }
     }
 
@@ -104,14 +105,29 @@ class DestinationListContainer extends React.Component {
         }
     }
 
+    deleteList(id) {
+        this.props.deleteList(id);
+        this.props.history.push('/destinations');
+    }
+
     render() {
         if (this.state.destinations === undefined || this.state.destinations.length === 0) {
             return <EmptyDestinationList />;
-        } else {
+        }
+        else if (this.state.destinationListId === undefined) {
+            return (
+                <DestinationList destinations={this.state.destinations}
+                deleteDestination={this.deleteDestination}
+                name={this.state.destinationListName}/>
+            );
+        }
+        else {
             return (
                 <DestinationList destinations={this.state.destinations}
                     deleteDestination={this.deleteDestination}
-                    name={this.state.destinationListName} />
+                    name={this.state.destinationListName}
+                    deleteList={this.deleteList}
+                    listId={this.state.destinationListId} />
             );
         }
     }
@@ -119,7 +135,8 @@ class DestinationListContainer extends React.Component {
 
 DestinationListContainer.propTypes = {
     match: PropTypes.object,
-    history: PropTypes.object
+    history: PropTypes.object,
+    deleteList: PropTypes.func
 }
 
 export default DestinationListContainer;

@@ -4,6 +4,7 @@ import TopBar from '../components/TopBar';
 import SideMenu from '../components/SideMenu';
 import ListFormDialog from '../components/ListFormDialog';
 import { reset } from 'redux-form';
+import PropTypes from 'prop-types';
 
 
 class MainMenuContainer extends React.Component {
@@ -77,6 +78,13 @@ class MainMenuContainer extends React.Component {
         this.getAllListsOfDestinations();
     }
 
+    componentDidUpdate() {
+        if (this.props.listDeleted) {
+            this.getAllListsOfDestinations();
+            this.props.unsetListDeleted();
+        }
+    }
+
     render() {
         return (
             <div>
@@ -85,7 +93,7 @@ class MainMenuContainer extends React.Component {
                     mobileOpen={this.state.mobileOpen}
                     handleListFormOpen={this.handleListFormOpen}
                     handleListFormClose={this.handleListFormClose}
-                    showListFormDialog={this.state.showListFormDialog} 
+                    showListFormDialog={this.state.showListFormDialog}
                     listsOfDestinations={this.state.listsOfDestinations} />
                 <ListFormDialog handleListFormClose={this.handleListFormClose}
                     showListFormDialog={this.state.showListFormDialog}
@@ -93,6 +101,11 @@ class MainMenuContainer extends React.Component {
             </div>
         )
     }
+}
+
+MainMenuContainer.propTypes = {
+    listDeleted: PropTypes.bool,
+    unsetListDeleted: PropTypes.func
 }
 
 export default MainMenuContainer;
