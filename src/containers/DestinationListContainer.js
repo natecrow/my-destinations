@@ -12,7 +12,8 @@ class DestinationListContainer extends React.Component {
 
         this.state = {
             destinations: [],
-            destinationListId: undefined
+            destinationListId: undefined,
+            destinationListName: undefined
         };
 
         this.deleteDestination = this.deleteDestination.bind(this);
@@ -42,14 +43,29 @@ class DestinationListContainer extends React.Component {
             });
             this.setState({
                 destinations: destinationsFromResponse,
-                destinationListId: undefined
+                destinationListId: undefined,
+                destinationListName: 'All Destinations'
             });
         } catch (error) {
             console.log('Error getting destinations: ' + error);
         }
     }
 
+    async getNameOfDestinationList(id) {
+        try {
+            const response = await axios.get('/api/destinationsLists/' + id);
+
+            const name = response.data.name;
+            this.setState({
+                destinationListName: name
+            })
+        } catch (error) {
+            console.log('Error getting name of destination list ' + id + ' + error');
+        }
+    }
+
     async getAllDestinationsForList(id) {
+        this.getNameOfDestinationList(id);
         try {
             const response = await axios.get('/api/destinationsLists/' + id + '/destinations');
 
@@ -94,7 +110,8 @@ class DestinationListContainer extends React.Component {
         } else {
             return (
                 <DestinationList destinations={this.state.destinations}
-                    deleteDestination={this.deleteDestination} />
+                    deleteDestination={this.deleteDestination}
+                    name={this.state.destinationListName} />
             );
         }
     }

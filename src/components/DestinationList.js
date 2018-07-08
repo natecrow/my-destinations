@@ -5,11 +5,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-let DestinationList = ({ destinations, deleteDestination }) => (
-    <Paper>
+let DestinationList = ({ destinations, deleteDestination, name }) => (
+    <div>
+        <h1>{name}</h1>
         <Table>
             <TableHead>
                 <TableRow>
@@ -43,12 +43,13 @@ let DestinationList = ({ destinations, deleteDestination }) => (
                 )}
             </TableBody>
         </Table>
-    </Paper>
+    </div>
 )
 
 DestinationList.propTypes = {
-    destinations: PropTypes.array,
-    deleteDestination: PropTypes.func
+    destinations: PropTypes.array.isRequired,
+    deleteDestination: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired
 }
 
 export default DestinationList;

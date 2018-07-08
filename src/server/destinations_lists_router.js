@@ -30,6 +30,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get a list of destinations
+router.get('/:id', async (req, res) => {
+    try {
+        const response = await axios.get(DESTINATIONS_LISTS_URL + req.params.id);
+
+        if (response) {
+            res.send(response.data);
+        }
+    } catch (error) {
+        res.send(error);
+    }
+})
+
 // Get all destinations from a list
 router.get('/:id/destinations', async (req, res) => {
     try {
