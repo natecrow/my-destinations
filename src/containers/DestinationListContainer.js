@@ -112,13 +112,17 @@ class DestinationListContainer extends React.Component {
 
     render() {
         if (this.state.destinations === undefined || this.state.destinations.length === 0) {
-            return <EmptyDestinationList />;
+            return (
+                <EmptyDestinationList name={this.state.destinationListName}
+                    deleteList={this.deleteList}
+                    listId={this.state.destinationListId} />
+            );
         }
         else if (this.state.destinationListId === undefined) {
             return (
                 <DestinationList destinations={this.state.destinations}
-                deleteDestination={this.deleteDestination}
-                name={this.state.destinationListName}/>
+                    deleteDestination={this.deleteDestination}
+                    name={this.state.destinationListName} />
             );
         }
         else {

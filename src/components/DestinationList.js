@@ -6,11 +6,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import DestinationListHeader from './DestinationListHeader';
 
 let DestinationList = ({ destinations, deleteDestination, name, deleteList, listId }) => (
     <div>
-        <h1>{name}</h1>
-        {deleteList && <Button color='secondary' onClick={() => deleteList(listId)}>Delete List</Button>}
+        <DestinationListHeader name={name} deleteList={deleteList} listId={listId} />
         <Table>
             <TableHead>
                 <TableRow>
