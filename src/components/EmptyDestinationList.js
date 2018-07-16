@@ -5,9 +5,9 @@ import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import DestinationListHeader from './DestinationListHeader';
 
-const EmptyDestinationList = ({ name, deleteList, listId }) => (
+const EmptyDestinationList = ({ name, deleteList, listId, openRenameListDialog }) => (
     <div>
-        <DestinationListHeader name={name} deleteList={deleteList} listId={listId} />
+        <DestinationListHeader name={name} deleteList={deleteList} listId={listId} openRenameListDialog={openRenameListDialog} />
         <p>There are no destinations yet.</p>
         <Link to='/destinations/new'>
             <Button color='primary'>
@@ -18,9 +18,10 @@ const EmptyDestinationList = ({ name, deleteList, listId }) => (
 );
 
 EmptyDestinationList.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     deleteList: PropTypes.func,
-    listId: PropTypes.string
+    listId: PropTypes.string,
+    openRenameListDialog: PropTypes.func
 }
 
 export default EmptyDestinationList;

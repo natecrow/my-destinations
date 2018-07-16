@@ -83,6 +83,10 @@ class MainMenuContainer extends React.Component {
             this.getAllListsOfDestinations();
             this.props.unsetListDeleted();
         }
+        if (this.props.listRenamed) {
+            this.getAllListsOfDestinations();
+            this.props.unsetListRenamed();
+        }
     }
 
     render() {
@@ -105,7 +109,9 @@ class MainMenuContainer extends React.Component {
 
 MainMenuContainer.propTypes = {
     listDeleted: PropTypes.bool,
-    unsetListDeleted: PropTypes.func
+    unsetListDeleted: PropTypes.func,
+    listRenamed: PropTypes.bool,
+    unsetListRenamed: PropTypes.func
 }
 
 export default MainMenuContainer;

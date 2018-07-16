@@ -8,9 +8,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import DestinationListHeader from './DestinationListHeader';
 
-let DestinationList = ({ destinations, deleteDestination, name, deleteList, listId }) => (
+let DestinationList = ({ destinations, deleteDestination, name, deleteList, listId, openRenameListDialog }) => (
     <div>
-        <DestinationListHeader name={name} deleteList={deleteList} listId={listId} />
+        <DestinationListHeader name={name} deleteList={deleteList} listId={listId} openRenameListDialog={openRenameListDialog} />
         <Table>
             <TableHead>
                 <TableRow>
@@ -51,8 +51,9 @@ DestinationList.propTypes = {
     destinations: PropTypes.array.isRequired,
     deleteDestination: PropTypes.func.isRequired,
     deleteList: PropTypes.func,
-    name: PropTypes.string.isRequired,
-    listId: PropTypes.string
+    name: PropTypes.string,
+    listId: PropTypes.string,
+    openRenameListDialog: PropTypes.func
 }
 
 export default DestinationList;

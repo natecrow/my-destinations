@@ -4,6 +4,7 @@ import DestinationList from '../components/DestinationList';
 import axios from 'axios';
 import DestinationMapper from '../utils/DestinationMapper';
 import EmptyDestinationList from '../components/EmptyDestinationList';
+import RenameListDialog from '../components/RenameListDialog';
 
 class DestinationListContainer extends React.Component {
 
@@ -13,11 +14,15 @@ class DestinationListContainer extends React.Component {
         this.state = {
             destinations: [],
             destinationListId: undefined,
-            destinationListName: undefined
+            destinationListName: undefined,
+            showRenameListDialog: false
         };
 
         this.deleteDestination = this.deleteDestination.bind(this);
         this.deleteList = this.deleteList.bind(this);
+        this.handleRenameListDialogOpen = this.handleRenameListDialogOpen.bind(this);
+        this.handleRenameListDialogClose = this.handleRenameListDialogClose.bind(this);
+        this.renameList = this.renameList.bind(this);
     }
 
     async deleteDestination(id) {
@@ -83,6 +88,25 @@ class DestinationListContainer extends React.Component {
         }
     }
 
+    deleteList(id) {
+        this.props.deleteList(id);
+        this.props.history.push('/destinations');
+    }
+
+    renameList(values, dispatch) {
+        this.handleRenameListDialogClose();
+        this.props.renameList(values, dispatch);
+        this.getAllDestinationsForList(this.state.destinationListId);
+    }
+
+    handleRenameListDialogOpen() {
+        this.setState({ showRenameListDialog: true });
+    }
+
+    handleRenameListDialogClose() {
+        this.setState({ showRenameListDialog: false });
+    }
+
     componentDidMount() {
         // id from the url parameter
         const id = this.props.match.params.id;
@@ -105,42 +129,45 @@ class DestinationListContainer extends React.Component {
         }
     }
 
-    deleteList(id) {
-        this.props.deleteList(id);
-        this.props.history.push('/destinations');
-    }
-
     render() {
+        let listComponent;
         if (this.state.destinations === undefined || this.state.destinations.length === 0) {
-            return (
-                <EmptyDestinationList name={this.state.destinationListName}
-                    deleteList={this.deleteList}
-                    listId={this.state.destinationListId} />
-            );
+            listComponent = <EmptyDestinationList name={this.state.destinationListName}
+                deleteList={this.deleteList}
+                listId={this.state.destinationListId}
+                openRenameListDialog={this.handleRenameListDialogOpen} />;
         }
         else if (this.state.destinationListId === undefined) {
-            return (
-                <DestinationList destinations={this.state.destinations}
-                    deleteDestination={this.deleteDestination}
-                    name={this.state.destinationListName} />
-            );
+            listComponent = <DestinationList destinations={this.state.destinations}
+                deleteDestination={this.deleteDestination}
+                name={this.state.destinationListName} />;
         }
         else {
-            return (
-                <DestinationList destinations={this.state.destinations}
-                    deleteDestination={this.deleteDestination}
-                    name={this.state.destinationListName}
-                    deleteList={this.deleteList}
-                    listId={this.state.destinationListId} />
-            );
+            listComponent = <DestinationList destinations={this.state.destinations}
+                deleteDestination={this.deleteDestination}
+                name={this.state.destinationListName}
+                deleteList={this.deleteList}
+                listId={this.state.destinationListId}
+                openRenameListDialog={this.handleRenameListDialogOpen} />
         }
+
+        return (
+            <div>
+                {listComponent}
+                <RenameListDialog closeDialog={this.handleRenameListDialogClose}
+                    showDialog={this.state.showRenameListDialog}
+                    onSubmit={this.renameList}
+                    initialValues={ {id: this.state.destinationListId} } />
+            </div>
+        )
     }
 }
 
 DestinationListContainer.propTypes = {
     match: PropTypes.object,
     history: PropTypes.object,
-    deleteList: PropTypes.func
+    deleteList: PropTypes.func,
+    renameList: PropTypes.func
 }
 
 export default DestinationListContainer;

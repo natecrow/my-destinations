@@ -6,6 +6,7 @@ import MainMenuContainer from '../containers/MainMenuContainer';
 import DestinationFormContainer from '../containers/DestinationFormContainer';
 import DestinationListContainer from '../containers/DestinationListContainer';
 import axios from 'axios';
+import { reset } from 'redux-form';
 
 const drawerWidth = 240;
 
@@ -36,11 +37,14 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            listDeleted: false
+            listDeleted: false,
+            listRenamed: false
         };
 
         this.deleteList = this.deleteList.bind(this);
         this.unsetListDeleted = this.unsetListDeleted.bind(this);
+        this.renameList = this.renameList.bind(this);
+        this.unsetListRenamed = this.unsetListRenamed.bind(this);
     }
 
     async deleteList(id) {
@@ -61,23 +65,49 @@ class App extends React.Component {
         });
     }
 
+    async renameList(values, dispatch) {
+        try {
+            const body = {
+                name: values.name
+            }
+
+            const response = await axios.put('/api/destinationsLists/' + values.id, body);
+
+            // Clear and close the form after submit succeeds
+            if (response) {
+                dispatch(reset('renameList'));
+                this.setState({
+                    listRenamed: true
+                });
+            }
+        } catch (error) {
+            console.log('Error renaming list of destinations with ID ' + values.id + ': ' + error);
+        }
+    }
+
+    unsetListRenamed() {
+        this.setState({
+            listRenamed: false
+        });
+    }
+
     render() {
         return (
             <div className={this.props.classes.root}>
-                <MainMenuContainer listDeleted={this.state.listDeleted} unsetListDeleted={this.unsetListDeleted} />
+                <MainMenuContainer listDeleted={this.state.listDeleted} unsetListDeleted={this.unsetListDeleted}
+                    listRenamed={this.state.listRenamed} unsetListRenamed={this.unsetListRenamed} />
                 <main className={this.props.classes.content}>
                     <Switch>
                         <Route exact path='/' component={DestinationListContainer} />
                         <Route exact path='/destinations' component={DestinationListContainer} />
-                        <Route exact path='/destination-lists/:id([0-9]*)' render={props => <DestinationListContainer deleteList={this.deleteList} {...props} />} />
+                        <Route exact path='/destination-lists/:id([0-9]*)' render={props => <DestinationListContainer deleteList={this.deleteList} renameList={this.renameList} {...props} />} />
                         <Route exact path='/destinations/new' component={DestinationFormContainer} />
                         <Route exact path='/destinations/:id([0-9]*)' component={DestinationFormContainer} />
                     </Switch>
                 </main>
-            </div >
+            </div>
         )
     }
-
 }
 
 App.propTypes = {

@@ -69,4 +69,17 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// Rename a destination list
+router.put('/:id', async (req, res) => {
+    try {
+        const response = await axios.put(DESTINATIONS_LISTS_URL + req.params.id, req.body);
+
+        if (response) {
+            res.send(response.data);
+        }
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 module.exports = router;
