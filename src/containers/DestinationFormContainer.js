@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import DestinationForm from '../components/DestinationForm';
 import axios from 'axios';
 import DestinationMapper from '../utils/DestinationMapper';
+import ListSelectionDialog from '../components/ListSelectionDialog';
 
 class DestinationFormContainer extends React.Component {
 
@@ -10,11 +11,14 @@ class DestinationFormContainer extends React.Component {
         super(props);
 
         this.state = {
-            destination: {}
+            destination: {},
+            showListSelectionDialog: false
         };
 
         this.submit = this.submit.bind(this);
         this.deleteDestination = this.deleteDestination.bind(this);
+        this.handleCloseListSelectionDialog = this.handleCloseListSelectionDialog.bind(this);
+        this.handleOpenListSelectionDialog = this.handleOpenListSelectionDialog.bind(this);
     }
 
     async submit(values) {
@@ -81,6 +85,18 @@ class DestinationFormContainer extends React.Component {
         }
     }
 
+    handleOpenListSelectionDialog() {
+        this.setState({
+            showListSelectionDialog: true
+        });
+    }
+
+    handleCloseListSelectionDialog() {
+        this.setState({
+            showListSelectionDialog: false
+        });
+    }
+
     componentDidMount() {
         // id from the url parameter
         const id = this.props.match.params.id;
@@ -91,8 +107,15 @@ class DestinationFormContainer extends React.Component {
 
     render() {
         return (
-            <DestinationForm onSubmit={this.submit} initialValues={this.state.destination}
-                deleteDestination={this.deleteDestination} />
+            <div>
+                <DestinationForm onSubmit={this.submit} initialValues={this.state.destination}
+                    deleteDestination={this.deleteDestination}
+                    handleOpenListSelectionDialog={this.handleOpenListSelectionDialog}
+                    showListSelectionDialog={this.showListSelectionDialog}
+                />
+                <ListSelectionDialog show={this.state.showListSelectionDialog}
+                    handleClose={this.handleCloseListSelectionDialog} />
+            </div>
         );
     }
 }

@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/Input';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues }) => (
+let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestination, initialValues, handleOpenListSelectionDialog }) => (
     <div>
         <h1>Add Destination to List</h1>
         <form onSubmit={handleSubmit}>
@@ -35,6 +35,9 @@ let DestinationForm = ({ handleSubmit, pristine, submitting, reset, deleteDestin
                 <Field name='dateToVisit' type='date' component={TextField} label='Date to Visit' shrinkLabel={true} />
                 <Field name='timeToVisit' type='time' component={TextField} label='Time to Visit' shrinkLabel={true} />
             </section>
+            <section style={{ display: 'flex', flexFlow: 'row wrap' }}>
+                <Button type='button' onClick={handleOpenListSelectionDialog}>Add to Lists</Button>
+            </section>
             <div>
                 <Button type='submit' disabled={pristine || submitting}>Submit</Button>
                 <Button type='button' disabled={pristine || submitting} onClick={reset}>Reset</Button>
@@ -55,7 +58,8 @@ DestinationForm.propTypes = {
     submitting: PropTypes.bool,
     reset: PropTypes.func,
     deleteDestination: PropTypes.func,
-    initialValues: PropTypes.object
+    initialValues: PropTypes.object,
+    handleOpenListSelectionDialog: PropTypes.func.isRequired,
 }
 
 DestinationForm = reduxForm({

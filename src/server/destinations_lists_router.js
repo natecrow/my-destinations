@@ -82,4 +82,22 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// Add an existing destination to a list
+router.post('/:id/destinations', async (req, res) => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'text/uri-list'
+            }
+        }
+        const response = await axios.post(DESTINATIONS_LISTS_URL + req.params.id + '/destinations', req.body, config);
+
+        if (response) {
+            res.send(response.data);
+        }
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 module.exports = router;
